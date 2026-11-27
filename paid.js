@@ -115,7 +115,6 @@
       });
       return g;
     }],
-    ['scenes', '你可能很熟悉的场景', list],
     ['strengths', '你的长处', list],
     ['signs', '要留意的信号', list],
     ['plan', '修膜计划', function (v) {
@@ -198,7 +197,7 @@
       return;
     }
 
-    box.appendChild(el('p', 'paid-sum', '每种人格约一千字，包括：成因、四层膜逐层解读、常见场景、你的长处、要留意的信号、分三个阶段的修膜计划、可以直接用的话、适合和要小心的工作环境、和其他牛怎么相处。一个会员码解锁全部 16 种人格，长期有效。'));
+    box.appendChild(el('p', 'paid-sum', '每种人格一篇完整解读，包括：成因、四层膜逐层解读、你的长处、要留意的信号、分三个阶段的修膜计划、可以直接用的话、适合和要小心的工作环境、和其他牛怎么相处。一个会员码解锁全部 16 种人格，长期有效。'));
     var form = el('form', 'paid-form');
     var input = el('input');
     input.placeholder = '输入会员码';

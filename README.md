@@ -2,8 +2,8 @@
 
 牛膜理论由吴天卓（tonywu）提出：牛马可以被生活反复摩擦，但不能没有自己的保护膜。
 
-- 理论介绍：https://tonywu2333.github.io/niumo-test/
-- 牛膜人格测试：https://tonywu2333.github.io/niumo-test/test/
+- 理论介绍：https://niumo.tonywu.top/
+- 牛膜人格测试：https://niumo.tonywu.top/test/
 - 完整原文：https://tonywu.top/2026/11/27/niumo-theory/
 
 ## 测试说明
@@ -23,7 +23,7 @@
 
 ## 技术
 
-纯静态 HTML，无依赖，部署在 GitHub Pages。`index.html` 是理论介绍首页，`test/index.html` 是测试页。
+纯静态 HTML，无依赖，部署在 Vercel（niumo.tonywu.top）；旧地址 tonywu2333.github.io/niumo-test 会自动跳转过来。`index.html` 是理论介绍首页，`test/index.html` 是测试页。
 
 ---
 

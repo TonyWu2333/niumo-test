@@ -229,7 +229,7 @@
 
     <h2 class="sub">四层牛膜厚度</h2>
     <div class="bars" id="rBars"></div>
-    <p class="legend">怎么判定厚薄：一层在 75% 及以上算厚；在 55%–75% 之间，不低于你自己四层的平均值才算厚；低于 55% 算薄。</p>
+    <p class="legend">怎么判定厚薄：一层在 55% 及以上算厚，低于 55% 算薄。</p>
     <div class="tip" id="rTip"></div>
     <div class="tip warn" id="rDead" hidden></div>
     <div id="rPaid"></div>
@@ -424,13 +424,10 @@
     return sums.map(function (s, i) { return Math.round(s / max[i] * 100); });
   }
 
-  // 判定厚薄：75% 及以上直接算厚；55%–75% 之间，要不低于自己四层的平均值才算厚；55% 以下算薄。
-  // 只用固定线（以前是 50%）时，大家都倾向选"好"的答案，大部分人会落到钢化牛膜；
-  // 加上和自己平均值的比较，才能分出每个人相对更薄的那几层。
-  var THICK_SURE = 75, THICK_MIN = 55;
+  // 判定厚薄：一层在 55% 及以上算厚，低于 55% 算薄（全选"说不清"是 50%，算薄）
+  var THICK_LINE = 55;
   function thickOf(pcts) {
-    var avg = (pcts[0] + pcts[1] + pcts[2] + pcts[3]) / 4;
-    return pcts.map(function (p) { return p >= THICK_SURE || (p >= THICK_MIN && p >= avg); });
+    return pcts.map(function (p) { return p >= THICK_LINE; });
   }
   function codeOf(pcts) {
     return thickOf(pcts).map(function (th, i) { return th ? LAYERS[i].thick.l : LAYERS[i].thin.l; }).join('');

@@ -150,7 +150,7 @@
   document.querySelectorAll('article.type').forEach(function (a) {
     var box = document.createElement('div');
     a.querySelector('.tbody').appendChild(box);
-    NiumoPaid.mount(box, a.id);
+    NiumoPaid.mount(box, a.id, { collapsed: true });
   });
 </script>
 </body>

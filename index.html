@@ -87,31 +87,33 @@
   .top nav a:hover { color: var(--yellow); }
 
   /* ---------- hero ---------- */
-  .hero { padding: 10px 0 56px; display: grid; gap: 28px; align-items: center; }
+  .hero { padding: 10px 0 76px; display: grid; gap: 28px; align-items: center; }
   .hero h1 { font-size: clamp(34px, 10.4vw, 76px); margin: 0; }
   .hero h1 .line { display: block; white-space: nowrap; }
   .hero .lede { font-size: clamp(17px, 2.1vw, 21px); color: var(--on-dark); margin: 22px 0 0; max-width: 34em; }
   .hero .by { margin-top: 14px; color: var(--dim-dark); font-size: 14px; }
   .hero .by b { color: var(--on-dark); }
   .hero .ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
-  .stage {
-    position: relative; width: 100%; aspect-ratio: 1 / 1; max-width: 520px; margin: 0 auto;
-    border: 2px solid #2a3038; background: radial-gradient(circle at 50% 50%, #151a20 0%, #0d0f12 70%);
+  .visual { position: relative; margin: 0; border: 3px solid var(--on-dark); box-shadow: 10px 10px 0 var(--yellow); background: #7fb8cc; }
+  .visual img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 50%; }
+  .visual figcaption { position: absolute; left: 0; right: 0; bottom: -40px; text-align: center; color: var(--dim-dark); font-size: 13px; }
+  .sticker {
+    position: absolute; font-family: var(--display); font-weight: 900; font-size: clamp(11px, 1.35vw, 15px);
+    padding: 5px 10px; border: 2px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); white-space: nowrap;
+    animation: bob 3.6s ease-in-out infinite alternate;
   }
-  .stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-  .stage .hud {
-    position: absolute; left: 12px; right: 12px; top: 10px; display: flex; justify-content: space-between;
-    font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 12px; color: var(--dim-dark); pointer-events: none;
+  .sticker.bad { background: var(--red); color: #fff; }
+  .sticker.good { background: var(--yellow); color: var(--ink); }
+  .s1 { left: 3%; top: 7%; transform: rotate(-6deg); }
+  .s2 { right: 2%; top: 20%; transform: rotate(5deg); animation-delay: -1.2s; }
+  .s3 { left: 1%; top: 60%; transform: rotate(4deg); animation-delay: -2.1s; }
+  .s4 { right: 3%; top: 73%; transform: rotate(-4deg); animation-delay: -0.6s; }
+  .s5 { left: 53%; top: 37%; transform: rotate(-2deg); animation-delay: -1.7s; }
+  .mlabel {
+    position: absolute; left: 9%; top: 34%; font-family: var(--display); font-weight: 900; font-size: clamp(12px, 1.4vw, 16px);
+    color: var(--ink); background: #fff; padding: 2px 8px; border: 2px solid var(--ink);
   }
-  .stage .hud b { color: var(--cyan); font-weight: 700; }
-  .stage .hud b.bad { color: var(--red); }
-  .stage .toggle {
-    position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%);
-    font-family: var(--display); font-weight: 900; font-size: 15px; cursor: pointer;
-    background: var(--ink); color: var(--yellow); border: 2px solid var(--yellow); padding: 8px 16px; white-space: nowrap;
-  }
-  .stage .toggle:hover { background: var(--yellow); color: var(--ink); }
-  .stage-cap { text-align: center; color: var(--dim-dark); font-size: 13px; margin-top: 10px; }
+  @keyframes bob { from { translate: 0 0; } to { translate: 0 -5px; } }
 
   /* ---------- ticker ---------- */
   .ticker { background: var(--yellow); color: var(--ink); overflow: hidden; border-top: 3px solid var(--ink); border-bottom: 3px solid var(--ink); transform: rotate(-1.2deg); margin: 0 -12px; }
@@ -215,6 +217,7 @@
   }
   @media (prefers-reduced-motion: reduce) {
     .ticker .track { animation: none; }
+    .sticker { animation: none; }
     .btn, .btn:hover { transition: none; }
   }
 </style>
@@ -231,21 +234,23 @@
     <div class="hero">
       <div>
         <h1 class="display"><span class="line">做人可以牛马，</span><span class="line">但不能没有<span class="hl">牛膜</span>。</span></h1>
-        <p class="lede">上班当牛马，大家都一样。麻烦的是很多人一点防护都没有：半夜群里有人@要回，领导脸色一变要慌，刷到同龄人升职又难受半天。</p>
+        <p class="lede">当牛马本身不是问题。真正难受的是当牛马的时候一点防护都没有，外面一点动静，直接就穿到心里去了。</p>
         <p class="by">牛膜理论由 <b>吴天卓（tonywu）</b> 于 2026 年 11 月提出</p>
         <div class="ctas">
           <a class="btn" href="test/">测测你的牛膜有多厚 →</a>
           <a class="btn outline" href="https://tonywu.top/2026/11/27/niumo-theory/">读完整原文</a>
         </div>
       </div>
-      <div>
-        <div class="stage" id="stage">
-          <canvas id="cv" aria-label="牛膜演示：外界压力飞向中间的我，牛膜挡住压力，让朋友的关心和有用的反馈通过"></canvas>
-          <div class="hud"><span>已挡住 <b id="blocked">0</b></span><span>内耗值 <b class="bad" id="drain">0</b></span></div>
-          <button class="toggle" id="toggle" type="button">关掉牛膜试试</button>
-        </div>
-        <div class="stage-cap">红色是压力，黄色是该放进来的东西</div>
-      </div>
+      <figure class="visual">
+        <img src="cover.webp" width="2000" height="1125" alt="透明保护膜里独自办公的人，象征牛膜理论中人与外界之间的缓冲层" fetchpriority="high">
+        <span class="sticker bad s1">@所有人 加个班</span>
+        <span class="sticker bad s2">同龄人年薪百万</span>
+        <span class="sticker bad s3">这个需求今天要</span>
+        <span class="sticker bad s4">AI 要取代你了</span>
+        <span class="sticker good s5">朋友的关心</span>
+        <span class="mlabel">牛膜 →</span>
+        <figcaption>红色的挡在膜外，黄色的放进来</figcaption>
+      </figure>
     </div>
   </div>
 </div>
@@ -401,168 +406,5 @@
   </div>
 </footer>
 
-<script>
-(function () {
-  var stage = document.getElementById('stage');
-  var cv = document.getElementById('cv');
-  var ctx = cv.getContext('2d');
-  var blockedEl = document.getElementById('blocked');
-  var drainEl = document.getElementById('drain');
-  var toggleBtn = document.getElementById('toggle');
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  var BAD = ['在吗？', '@所有人 加个班', '这个需求今天要', '你看看人家', '同龄人年薪百万', 'AI 要取代你了', '绩效 C', '领导脸色不好', '周末开个会', '怎么还没回消息', '你不够努力', '再改一版'];
-  var GOOD = ['有用的反馈', '朋友的关心', '真正的急事', '新机会', '一句谢谢'];
-
-  var W = 0, H = 0, dpr = 1, R = 0, cx = 0, cy = 0;
-  var membrane = true, blocked = 0, drain = 0, shake = 0;
-  var chips = [], ripples = [], lastSpawn = 0, running = false, visible = true, lastT = 0;
-
-  function resize() {
-    var r = stage.getBoundingClientRect();
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    W = r.width; H = r.height;
-    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    cx = W / 2; cy = H / 2 + 6; R = Math.min(W, H) * 0.27;
-    if (reduce) drawStatic();
-  }
-
-  function font(sz, w) { return (w || 700) + ' ' + sz + 'px "Noto Sans SC", -apple-system, "PingFang SC", sans-serif'; }
-
-  function spawn() {
-    var good = Math.random() < 0.24;
-    var list = good ? GOOD : BAD;
-    var text = list[Math.floor(Math.random() * list.length)];
-    var a = Math.random() * Math.PI * 2;
-    var dist = Math.max(W, H) * 0.62;
-    var x = cx + Math.cos(a) * dist, y = cy + Math.sin(a) * dist;
-    var aim = a + Math.PI + (Math.random() - 0.5) * 0.25;
-    var sp = (good ? 0.07 : 0.085) + Math.random() * 0.05; // px per ms
-    ctx.font = font(13);
-    var tw = ctx.measureText(text).width;
-    chips.push({ text: text, good: good, x: x, y: y, vx: Math.cos(aim) * sp, vy: Math.sin(aim) * sp, w: tw + 18, h: 26, state: 'in', life: 1 });
-  }
-
-  function chipRadius(c) { return Math.max(c.w, c.h) / 2 * 0.62; }
-
-  function step(dt) {
-    for (var i = chips.length - 1; i >= 0; i--) {
-      var c = chips[i];
-      c.x += c.vx * dt; c.y += c.vy * dt;
-      var dx = c.x - cx, dy = c.y - cy, d = Math.sqrt(dx * dx + dy * dy);
-      var inward = (dx * c.vx + dy * c.vy) < 0;
-      if (c.state === 'in' && membrane && inward && d <= R + chipRadius(c)) {
-        var ang = Math.atan2(dy, dx);
-        if (c.good) {
-          c.state = 'pass';
-          ripples.push({ a: ang, t: 0, good: true });
-        } else {
-          var nx = dx / d, ny = dy / d, dot = c.vx * nx + c.vy * ny;
-          c.vx = (c.vx - 2 * dot * nx) * 0.75; c.vy = (c.vy - 2 * dot * ny) * 0.75;
-          c.state = 'bounced';
-          ripples.push({ a: ang, t: 0, good: false });
-          blocked++; blockedEl.textContent = blocked;
-        }
-      }
-      if ((c.state === 'in' || c.state === 'pass') && d < 26) {
-        if (!c.good) { drain++; drainEl.textContent = drain; shake = 1; }
-        c.state = 'done';
-      }
-      if (c.state === 'bounced' || c.state === 'done') c.life -= dt / (c.state === 'done' ? 260 : 1600);
-      if (c.life <= 0 || d > Math.max(W, H)) chips.splice(i, 1);
-    }
-    for (var j = ripples.length - 1; j >= 0; j--) { ripples[j].t += dt / 600; if (ripples[j].t >= 1) ripples.splice(j, 1); }
-    shake = Math.max(0, shake - dt / 350);
-  }
-
-  function roundRect(x, y, w, h, r) {
-    ctx.beginPath();
-    ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
-    ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-    // membrane
-    if (membrane) {
-      ctx.save();
-      ctx.shadowColor = 'rgba(111,227,255,0.55)'; ctx.shadowBlur = 18;
-      ctx.strokeStyle = '#6fe3ff'; ctx.lineWidth = 4;
-      ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.stroke();
-      ctx.restore();
-      ctx.fillStyle = 'rgba(111,227,255,0.06)';
-      ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fill();
-      ripples.forEach(function (rp) {
-        var k = 1 - rp.t;
-        ctx.strokeStyle = rp.good ? 'rgba(255,214,10,' + k + ')' : 'rgba(255,255,255,' + k + ')';
-        ctx.lineWidth = 3 + 6 * k;
-        ctx.beginPath(); ctx.arc(cx, cy, R + rp.t * 6, rp.a - 0.35, rp.a + 0.35); ctx.stroke();
-      });
-    } else {
-      ctx.setLineDash([3, 10]); ctx.strokeStyle = 'rgba(143,153,163,0.45)'; ctx.lineWidth = 2;
-      ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]);
-    }
-    // me
-    var sx = shake ? (Math.random() - 0.5) * 8 * shake : 0, sy = shake ? (Math.random() - 0.5) * 8 * shake : 0;
-    ctx.fillStyle = shake > 0.05 ? '#ff5a4e' : '#ffd60a';
-    ctx.beginPath(); ctx.arc(cx + sx, cy + sy, 24, 0, Math.PI * 2); ctx.fill();
-    ctx.fillStyle = '#0d0f12'; ctx.font = font(20, 900); ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-    ctx.fillText('我', cx + sx, cy + sy + 1);
-    // chips
-    ctx.font = font(13);
-    chips.forEach(function (c) {
-      ctx.globalAlpha = Math.max(0, Math.min(1, c.life));
-      var x = c.x - c.w / 2, y = c.y - c.h / 2;
-      roundRect(x, y, c.w, c.h, 13);
-      if (c.good) { ctx.fillStyle = '#ffd60a'; ctx.fill(); ctx.fillStyle = '#0d0f12'; }
-      else { ctx.fillStyle = '#1d1416'; ctx.fill(); ctx.strokeStyle = '#ff5a4e'; ctx.lineWidth = 1.5; ctx.stroke(); ctx.fillStyle = '#ffb3ad'; }
-      ctx.fillText(c.text, c.x, c.y + 1);
-    });
-    ctx.globalAlpha = 1;
-  }
-
-  function loop(t) {
-    if (!running) return;
-    var dt = lastT ? Math.min(t - lastT, 50) : 16;
-    lastT = t;
-    if (t - lastSpawn > (membrane ? 620 : 520)) { spawn(); lastSpawn = t; }
-    step(dt); draw();
-    requestAnimationFrame(loop);
-  }
-
-  function start() { if (running || reduce) return; running = true; lastT = 0; requestAnimationFrame(loop); }
-  function stop() { running = false; }
-
-  function drawStatic() {
-    // 减少动态效果时：画一帧示意图
-    chips = [];
-    var demo = [['@所有人 加个班', 0, -1, false], ['朋友的关心', 0, 0, true], ['同龄人年薪百万', 0, 1, false], ['AI 要取代你了', 0, 2, false]];
-    ctx.font = font(13);
-    demo.forEach(function (d, i) {
-      var a = -Math.PI / 2 + i * Math.PI / 2;
-      var dist = d[3] ? R * 0.55 : R + 46;
-      var tw = ctx.measureText(d[0]).width;
-      chips.push({ text: d[0], good: d[3], x: cx + Math.cos(a) * dist, y: cy + Math.sin(a) * dist, w: tw + 18, h: 26, life: 1 });
-    });
-    ripples = []; shake = membrane ? 0 : 1;
-    draw();
-  }
-
-  toggleBtn.addEventListener('click', function () {
-    membrane = !membrane;
-    toggleBtn.textContent = membrane ? '关掉牛膜试试' : '把牛膜装回去';
-    if (reduce) drawStatic();
-  });
-
-  window.addEventListener('resize', resize);
-  resize();
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(function (es) { visible = es[0].isIntersecting; visible ? start() : stop(); }).observe(stage);
-  } else { start(); }
-  document.addEventListener('visibilitychange', function () { document.hidden ? stop() : (visible && start()); });
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (reduce) drawStatic(); });
-})();
-</script>
 </body>
 </html>

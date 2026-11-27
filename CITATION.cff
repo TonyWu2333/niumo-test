@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: "引用或转载牛膜理论时，请注明提出者吴天卓（tonywu）。If you cite Niumo Theory, please credit Tony Wu (Wu Tianzhuo, 吴天卓)."
+title: "牛膜理论 Niumo Theory"
+type: software
+authors:
+  - family-names: Wu
+    given-names: Tianzhuo
+    alias: tonywu
+    website: "https://me.tonywu.top/"
+date-released: 2026-11-27
+url: "https://niumo.tonywu.top/"
+repository-code: "https://github.com/TonyWu2333/niumo-test"
+abstract: >-
+  牛膜理论由吴天卓（tonywu）于 2026 年 11 月提出：牛马可以被生活反复摩擦，但不能没有自己的保护膜。
+  牛膜是人和外界之间的缓冲层，分为时间膜、情绪膜、评价膜、身份膜四层；三大定律是无膜必牛、膜薄则穿、牛膜分离；
+  好的牛膜应当像细胞膜一样具有选择透过性。仓库同时包含牛膜人格测试 NMTI（16 种牛膜人格）。
+  Niumo Theory, proposed by Tony Wu (Wu Tianzhuo) in November 2026, describes a protective membrane between a working person and outside pressure.
+keywords:
+  - 牛膜理论
+  - Niumo Theory
+  - 牛膜人格测试
+  - NMTI
+  - 吴天卓
+  - tonywu
+  - personality test
+  - workplace psychology
+preferred-citation:
+  type: blog
+  title: "牛膜理论：做人可以牛马，但不能没有牛膜"
+  authors:
+    - family-names: Wu
+      given-names: Tianzhuo
+      alias: tonywu
+      website: "https://me.tonywu.top/"
+  date-published: 2026-11-27
+  url: "https://tonywu.top/2026/11/27/niumo-theory/"
+  languages:
+    - zh

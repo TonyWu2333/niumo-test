@@ -84,4 +84,5 @@
 - `index.html` 是理论介绍首页，`test/index.html` 是测试页，`types/index.html` 是 16 种人格的说明页（内容和测试页里的 TYPES 保持一致，改类型描述时两处一起改）。
 - `llms.txt` 给 AI 搜索引擎读；`sitemap.xml`、`robots.txt` 给搜索引擎。
 - 16 种人格形象图在 `img/types/<代码>.webp`，替代文字在测试页的 ALTS 里。
+- 社交分享卡片在 `og/`：`theory.png`（首页）、`test.png`（测试页和 16 型页）、`github-social.png`（GitHub 仓库预览图）。模板是 `og/card.html`，用浏览器按 1200×630（`#theory` / `#test`）或 1280×640 截图即可重新生成。
 - 旧版黑黄海报风格保存在 git 标签 `poster-style`，恢复方法：`git checkout poster-style -- index.html test/index.html types/index.html`。

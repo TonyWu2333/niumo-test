@@ -107,6 +107,10 @@
   .linkbtn:disabled { opacity: .3; cursor: default; text-decoration: none; }
 
   /* result */
+  .rhead { display: grid; gap: 18px; margin-top: 24px; }
+  .rhead .kicker { margin-top: 0; }
+  .rimg { margin: 0; max-width: 260px; background: #fff; border: 3px solid var(--on-dark); box-shadow: 8px 8px 0 var(--yellow); }
+  .rimg img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 58%; }
   .kicker { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13px; letter-spacing: .12em; color: var(--dim-dark); margin-top: 24px; }
   .code { display: flex; gap: 10px; margin: 14px 0 6px; }
   .code span {
@@ -150,6 +154,7 @@
   footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; }
   footer a { color: var(--on-dark); }
   @media (min-width: 600px) {
+    .rhead { grid-template-columns: 240px 1fr; align-items: center; gap: 32px; }
     .card { padding: 34px 36px; }
     .layer-grid { grid-template-columns: repeat(4, 1fr); }
     .grid16 { grid-template-columns: repeat(4, 1fr); }
@@ -191,10 +196,15 @@
 
   <!-- result -->
   <section class="screen" id="result">
-    <div class="kicker">你的牛膜人格</div>
-    <div class="code" id="rCode"></div>
-    <h2 class="display typename" id="rName"></h2>
-    <p class="tagline" id="rLine"></p>
+    <div class="rhead">
+      <figure class="rimg"><img id="rImg" width="1086" height="1448" alt=""></figure>
+      <div>
+        <div class="kicker">你的牛膜人格</div>
+        <div class="code" id="rCode"></div>
+        <h2 class="display typename" id="rName"></h2>
+        <p class="tagline" id="rLine"></p>
+      </div>
+    </div>
     <p class="desc" id="rDesc"></p>
 
     <h2 class="sub">四层牛膜厚度</h2>
@@ -316,6 +326,26 @@
       d: '外面一点事都能影响到你，干得多，想得也多。不用一下子全改，先从最薄的那层开始。' }
   };
 
+  // 每种人格形象图的替代文字（/types/ 页面也从这里读取）
+  var ALTS = {
+    BFIH: '端着茶杯、站在厚厚牛膜里微笑的卡通小牛，红色感叹号被挡在膜外，一颗黄色爱心从缺口飘进来',
+    BFEH: '站在领奖台最低一级、看着手机排行榜冒汗的卡通小牛',
+    BFIW: '抱着枕头、穿着牛头拖鞋站在工位旁的卡通小牛，牛膜是一栋办公楼的形状',
+    BFEW: '胸前挂着电量表、用线连着头顶业绩图表的卡通小牛',
+    BSIH: '抱着黄色海绵吸收灰色乌云、表情发愁的卡通小牛',
+    BSEH: '端着两杯咖啡、陪着笑冒汗的卡通小牛',
+    BSIW: '抱着一摞文件夹和便利贴的卡通小牛，牛膜只罩住脚边半圈',
+    BSEW: '提着公文包准点下班的卡通小牛，头上拴着两朵灰色乌云',
+    OFIH: '闭眼盘腿打坐、手里手机一直在响的卡通小牛',
+    OFEH: '绑着红头带、拿着秒表冲向奖杯的卡通小牛',
+    OFIW: '头戴小皇冠、把公司大楼背在身上的卡通小牛',
+    OFEW: '戴墨镜、站在摇晃的文件堆上敲电脑的卡通小牛，牛膜背后有裂痕',
+    OSIH: '戴着客服耳麦、一手拿手机一手拿纸巾的卡通小牛',
+    OSEH: '站在雨里的石头上、胸口发着暖光的卡通小牛，牛膜在漏雨',
+    OSIW: '戴着耳机、拉着一车文件的黄褐色老黄牛，周围飘着几只眼睛',
+    OSEW: '拿着创可贴修补破洞牛膜的卡通小牛，膜上到处是缺口'
+  };
+
   var answers = new Array(QUESTIONS.length);
   var cur = 0;
   var $ = function (id) { return document.getElementById(id); };
@@ -392,6 +422,9 @@
       s.title = LAYERS[i].name + '：' + (thin ? LAYERS[i].thin.n : LAYERS[i].thick.n);
       codeBox.appendChild(s);
     });
+    var rImg = $('rImg');
+    rImg.src = '../img/types/' + code + '.webp';
+    rImg.alt = code + ' ' + t.n + '：' + ALTS[code];
     $('rName').textContent = code + ' ' + t.n;
     $('rLine').textContent = t.s;
     $('rDesc').textContent = t.d;
@@ -504,54 +537,67 @@
     return true;
   }
 
-  function renderCard(code, pcts, url) {
-    var t = TYPES[code], W = 1080, H = 1440, P = 80, maxW = W - P * 2;
+  function renderCard(code, pcts, url, charImg) {
+    var t = TYPES[code], W = 1080, H = 1440, P = 72;
     var cv = document.createElement('canvas'); cv.width = W; cv.height = H;
     var ctx = cv.getContext('2d');
     ctx.fillStyle = '#0d0f12'; ctx.fillRect(0, 0, W, H);
     ctx.textBaseline = 'alphabetic';
 
-    ctx.fillStyle = '#8f99a3'; ctx.font = '600 30px ' + MONO; ctx.fillText('NMTI · 牛膜人格测试', P, 120);
-    ctx.fillStyle = '#e9ecef'; ctx.font = '700 42px ' + FONT; ctx.fillText('我的牛膜人格是', P, 190);
+    ctx.fillStyle = '#8f99a3'; ctx.font = '600 30px ' + MONO; ctx.fillText('NMTI · 牛膜人格测试', P, 112);
+    ctx.fillStyle = '#e9ecef'; ctx.font = '700 40px ' + FONT; ctx.fillText('我的牛膜人格是', P, 172);
 
-    var sq = 150, gap = 22, y = 230;
+    // 右侧：人物形象
+    var iw = 420, ih = 525, ix = W - P - iw, iy = 214;
+    ctx.fillStyle = '#ffd60a'; ctx.fillRect(ix + 14, iy + 14, iw, ih);
+    ctx.fillStyle = '#ffffff'; ctx.fillRect(ix, iy, iw, ih);
+    if (charImg) {
+      // 原图 3:4，裁成 4:5，偏下取景
+      var sw = charImg.naturalWidth, sh = sw * ih / iw, sy = Math.max(0, Math.min(charImg.naturalHeight - sh, charImg.naturalHeight * 0.58 - sh / 2));
+      ctx.drawImage(charImg, 0, sy, sw, sh, ix, iy, iw, ih);
+    }
+    ctx.strokeStyle = '#e9ecef'; ctx.lineWidth = 5; ctx.strokeRect(ix, iy, iw, ih);
+
+    // 左侧：字母、名字、简介
+    var colW = ix - P - 40, sq = 104, gap = 14, y = 214;
     code.split('').forEach(function (ch, i) {
       var thin = ch === LAYERS[i].thin.l, x = P + i * (sq + gap);
       ctx.fillStyle = thin ? '#ff5a4e' : '#ffd60a'; ctx.fillRect(x, y, sq, sq);
-      ctx.fillStyle = thin ? '#ffffff' : '#0d0f12'; ctx.font = '900 96px ' + FONT; ctx.textAlign = 'center';
-      ctx.fillText(ch, x + sq / 2, y + sq / 2 + 34); ctx.textAlign = 'left';
+      ctx.fillStyle = thin ? '#ffffff' : '#0d0f12'; ctx.font = '900 66px ' + FONT; ctx.textAlign = 'center';
+      ctx.fillText(ch, x + sq / 2, y + sq / 2 + 24); ctx.textAlign = 'left';
     });
-    y += sq + 110;
-
-    var nameSize = fitFont(ctx, t.n, '900', 104, maxW);
+    y += sq + 112;
+    fitFont(ctx, t.n, '900', 96, colW);
     ctx.fillStyle = '#e9ecef'; ctx.fillText(t.n, P, y);
-    y += 70;
-    ctx.fillStyle = '#ffd60a'; ctx.font = '700 44px ' + FONT; ctx.fillText(t.s, P, y);
-    y += 70;
-    ctx.fillStyle = '#c3cad1'; ctx.font = '500 34px ' + FONT;
-    wrapLines(ctx, t.d, maxW, 3).forEach(function (ln) { ctx.fillText(ln, P, y); y += 54; });
-    y += 36;
+    y += 74;
+    ctx.fillStyle = '#ffd60a'; ctx.font = '700 40px ' + FONT;
+    wrapLines(ctx, t.s, colW, 2).forEach(function (ln) { ctx.fillText(ln, P, y); y += 56; });
+    ctx.fillStyle = '#c3cad1'; ctx.font = '500 32px ' + FONT;
+    wrapLines(ctx, t.d, colW, 4).forEach(function (ln) { ctx.fillText(ln, P, y + 10); y += 48; });
 
+    // 四层厚度
+    y = Math.max(y + 40, iy + ih + 90);
+    var bw = W - P * 2;
     LAYERS.forEach(function (L, i) {
       var thin = pcts[i] < 50;
-      ctx.fillStyle = '#e9ecef'; ctx.font = '900 36px ' + FONT; ctx.fillText(L.name, P, y);
+      ctx.fillStyle = '#e9ecef'; ctx.font = '900 34px ' + FONT; ctx.fillText(L.name, P, y);
       ctx.fillStyle = '#8f99a3'; ctx.font = '600 30px ' + MONO; ctx.textAlign = 'right';
       ctx.fillText(pcts[i] + '%', W - P, y); ctx.textAlign = 'left';
-      ctx.fillStyle = '#2a3038'; ctx.fillRect(P, y + 18, maxW, 22);
-      ctx.fillStyle = thin ? '#ff5a4e' : '#ffd60a'; ctx.fillRect(P, y + 18, Math.max(maxW * pcts[i] / 100, 10), 22);
-      y += 96;
+      ctx.fillStyle = '#2a3038'; ctx.fillRect(P, y + 16, bw, 20);
+      ctx.fillStyle = thin ? '#ff5a4e' : '#ffd60a'; ctx.fillRect(P, y + 16, Math.max(bw * pcts[i] / 100, 10), 20);
+      y += 84;
     });
 
-    var bandY = H - 240;
-    ctx.fillStyle = '#ffd60a'; ctx.fillRect(0, bandY, W, 240);
+    var bandY = H - 220;
+    ctx.fillStyle = '#ffd60a'; ctx.fillRect(0, bandY, W, 220);
     ctx.fillStyle = '#0d0f12'; ctx.fillRect(0, bandY, W, 6);
-    var qrSize = 176, qrX = W - P - qrSize, qrY = bandY + 32;
+    var qrSize = 164, qrX = W - P - qrSize, qrY = bandY + 28;
     var hasQR = drawQR(ctx, url, qrX, qrY, qrSize);
     if (hasQR) { ctx.strokeStyle = '#0d0f12'; ctx.lineWidth = 4; ctx.strokeRect(qrX, qrY, qrSize, qrSize); }
-    ctx.fillStyle = '#0d0f12'; ctx.font = '900 50px ' + FONT;
-    ctx.fillText(hasQR ? '扫码测你的牛膜人格' : '测测你的牛膜人格', P, bandY + 92);
-    ctx.font = '700 36px ' + FONT; ctx.fillText('niumo.tonywu.top', P, bandY + 148);
-    ctx.font = '500 26px ' + FONT; ctx.fillText('牛膜理论由吴天卓（tonywu）提出', P, bandY + 196);
+    ctx.fillStyle = '#0d0f12'; ctx.font = '900 48px ' + FONT;
+    ctx.fillText(hasQR ? '扫码测你的牛膜人格' : '测测你的牛膜人格', P, bandY + 86);
+    ctx.font = '700 34px ' + FONT; ctx.fillText('niumo.tonywu.top', P, bandY + 140);
+    ctx.font = '500 26px ' + FONT; ctx.fillText('牛膜理论由吴天卓（tonywu）提出', P, bandY + 186);
     return cv;
   }
 
@@ -568,8 +614,14 @@
     var qrReady = new Promise(function (res) {
       var n = 0; (function wait() { if (typeof window.qrcode === 'function' || n++ > 30) res(); else setTimeout(wait, 100); })();
     });
-    Promise.all([fontsReady, qrReady]).then(function () {
-      var cv = renderCard(code, pcts, url);
+    var imgReady = new Promise(function (res) {
+      var im = new Image();
+      im.onload = function () { res(im); };
+      im.onerror = function () { res(null); };
+      im.src = '../img/types/' + code + '.webp';
+    });
+    Promise.all([fontsReady, qrReady, imgReady]).then(function (r) {
+      var cv = renderCard(code, pcts, url, r[2]);
       cv.toBlob(function (blob) {
         if (!blob) { tip.textContent = '生成失败，请截图保存'; return; }
         if (img.dataset.url) URL.revokeObjectURL(img.dataset.url);

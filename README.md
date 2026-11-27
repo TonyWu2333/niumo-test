@@ -85,4 +85,5 @@
 - `llms.txt` 给 AI 搜索引擎读；`sitemap.xml`、`robots.txt` 给搜索引擎。
 - 16 种人格形象图在 `img/types/<代码>.webp`，替代文字在测试页的 ALTS 里。
 - 社交分享卡片在 `og/`：`theory.png`（首页）、`test.png`（测试页和 16 型页）、`github-social.png`（GitHub 仓库预览图）。模板是 `og/card.html`，用浏览器按 1200×630（`#theory` / `#test`）或 1280×640 截图即可重新生成。
+- 会员深度解读：页面上只有加密后的 `paid.enc.json`，输入会员码后在浏览器里解密（`paid.js`）。明文 `private/paid.json` 和会员码 `private/codes.txt` 不进仓库，改完解读后运行 `node scripts/build-paid.mjs` 重新加密，会员码不变。
 - 旧版黑黄海报风格保存在 git 标签 `poster-style`，恢复方法：`git checkout poster-style -- index.html test/index.html types/index.html`。

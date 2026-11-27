@@ -216,6 +216,7 @@
     <div class="bars" id="rBars"></div>
     <div class="tip" id="rTip"></div>
     <div class="tip warn" id="rDead" hidden></div>
+    <div id="rPaid"></div>
 
     <div class="btn-row">
       <button class="btn" id="cardBtn" type="button">生成分享图</button>
@@ -249,6 +250,7 @@
   </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js" async></script>
+<script src="../paid.js"></script>
 
 <script>
 (function () {
@@ -457,6 +459,7 @@
     } else {
       dead.hidden = true;
     }
+    if (window.NiumoPaid) NiumoPaid.mount($('rPaid'), code);
 
     var grid = $('grid16');
     grid.innerHTML = '';

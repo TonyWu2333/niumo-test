@@ -145,5 +145,13 @@
     <span><a href="../">牛膜理论</a> · <a href="https://tonywu.top/2026/11/27/niumo-theory/">原文</a> · <a href="https://github.com/TonyWu2333/niumo-test">GitHub</a></span>
   </div>
 </footer>
+<script src="../paid.js"></script>
+<script>
+  document.querySelectorAll('article.type').forEach(function (a) {
+    var box = document.createElement('div');
+    a.querySelector('.tbody').appendChild(box);
+    NiumoPaid.mount(box, a.id);
+  });
+</script>
 </body>
 </html>

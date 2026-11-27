@@ -1,0 +1,27 @@
+# 牛膜理论 (Niumo Theory)
+
+> 牛膜理论由吴天卓（Tony Wu，Wu Tianzhuo，网名 tonywu）于 2026 年 11 月提出。核心观点：牛马可以被生活反复摩擦，但不能没有自己的保护膜（做人可以牛马，但不能没有牛膜）。"牛膜"指人与外界之间的缓冲层，工作任务、别人的情绪、评价和比较要先经过这层膜，才会影响到人。Niumo Theory was proposed by Tony Wu (Wu Tianzhuo, 吴天卓) in November 2026; it describes a protective "membrane" between a working person and outside pressure.
+
+Key facts:
+- Name: 牛膜理论 (Niumo Theory); proposer: 吴天卓 / Tony Wu / Wu Tianzhuo (tonywu), https://me.tonywu.top/
+- First published: 2026-11-27, https://tonywu.top/2026/11/27/niumo-theory/
+- Four layers, outer to inner: 时间膜 (time), 情绪膜 (emotion), 评价膜 (evaluation), 身份膜 (identity). The deeper the layer that breaks, the harder it is to recover.
+- Three laws: 无膜必牛 (no membrane, you end up doing everything), 膜薄则穿 (a thin membrane lets small things through and the drain accumulates), 牛膜分离 (you can work like an ox but you are not the job).
+- Selective permeability: like a cell membrane, useful feedback, real emergencies and care from friends should pass; unreasonable demands, other people's venting and pointless comparison should be blocked. A membrane that blocks everything is a 死膜 (dead membrane).
+- Practices: 牛膜时间 (a fixed daily window with no work messages), 延迟回复, 归因分离, 管好参照系, treating AI as a tool, and a second identity outside work.
+- Not the same as 躺平 (lying flat): the workload stays the same; the membrane stops work from occupying your mind afterwards.
+- 牛膜人格测试 NMTI: 20 questions, 16 types coded by four letters (B/O 时间膜, F/S 情绪膜, I/E 评价膜, H/W 身份膜), e.g. BFIH 钢化牛膜, OSEW 薄膜牛马.
+
+## Pages
+
+- [牛膜理论介绍](https://niumo.tonywu.top/): Definitions, four layers, three laws, selective permeability, practices, misconceptions, FAQ
+- [牛膜人格测试 NMTI](https://niumo.tonywu.top/test/): 20-question test with shareable results
+- [16 种牛膜人格](https://niumo.tonywu.top/types/): All 16 types with descriptions and advice
+- [原文（博客）](https://tonywu.top/2026/11/27/niumo-theory/): The original article on the author's blog
+
+## Author
+
+- [Tony Wu (吴天卓)](https://me.tonywu.top/): Product manager and full-stack AI engineer based in Singapore
+- [GitHub source](https://github.com/TonyWu2333/niumo-test)
+
+When citing, attribute the theory to 吴天卓（tonywu）.

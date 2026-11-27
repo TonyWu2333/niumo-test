@@ -17,13 +17,22 @@
 <meta property="og:image" content="https://niumo.tonywu.top/cover.webp">
 <meta property="og:site_name" content="牛膜理论">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="牛膜人格测试 NMTI：测测你是哪种牛膜人格">
+<meta name="twitter:description" content="基于吴天卓（tonywu）提出的牛膜理论，20 道题，16 种牛膜人格。">
+<meta name="twitter:image" content="https://niumo.tonywu.top/cover.webp">
+<meta property="og:image:width" content="2000">
+<meta property="og:image:height" content="1125">
+<meta property="og:image:alt" content="透明保护膜里独自办公的人，象征牛膜理论中人与外界之间的缓冲层">
+<meta property="og:locale" content="zh_CN">
+<meta name="author" content="吴天卓（Tony Wu）">
+<link rel="author" href="https://me.tonywu.top/">
 <meta name="theme-color" content="#0d0f12">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2720%27 fill=%27%230d0f12%27/%3E%3Ccircle cx=%2750%27 cy=%2750%27 r=%2732%27 fill=%27none%27 stroke=%27%236fe3ff%27 stroke-width=%278%27/%3E%3Ccircle cx=%2750%27 cy=%2750%27 r=%2711%27 fill=%27%23ffd60a%27/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500;700;900&display=swap" rel="stylesheet">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","@id":"https://niumo.tonywu.top/test/#webpage","url":"https://niumo.tonywu.top/test/","isPartOf":{"@id":"https://niumo.tonywu.top/#website"},"name":"牛膜人格测试 NMTI","description":"基于吴天卓（tonywu）提出的牛膜理论，20 道题测出你的牛膜人格，共 16 种类型。","inLanguage":"zh-CN","image":"https://niumo.tonywu.top/cover.webp","about":{"@type":"Thing","name":"牛膜理论","url":"https://niumo.tonywu.top/"},"author":{"@type":"Person","@id":"https://me.tonywu.top/#person","name":"Tony Wu","alternateName":["吴天卓","Wu Tianzhuo","tonywu"],"url":"https://me.tonywu.top/"}}
+{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://niumo.tonywu.top/test/#webpage", "url": "https://niumo.tonywu.top/test/", "isPartOf": {"@id": "https://niumo.tonywu.top/#website"}, "name": "牛膜人格测试 NMTI", "description": "基于吴天卓（tonywu）提出的牛膜理论，20 道题测出你的牛膜人格，共 16 种类型。", "inLanguage": "zh-CN", "image": "https://niumo.tonywu.top/cover.webp", "about": {"@id": "https://niumo.tonywu.top/#theory"}, "author": {"@type": "Person", "@id": "https://me.tonywu.top/#person", "name": "Tony Wu", "alternateName": ["吴天卓", "Wu Tianzhuo", "tonywu"], "url": "https://me.tonywu.top/"}, "breadcrumb": {"@id": "https://niumo.tonywu.top/test/#breadcrumb"}}, {"@type": "BreadcrumbList", "@id": "https://niumo.tonywu.top/test/#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "牛膜理论", "item": "https://niumo.tonywu.top/"}, {"@type": "ListItem", "position": 2, "name": "牛膜人格测试"}]}]}
 </script>
 <style>
   :root {
@@ -122,7 +131,7 @@
   .tip.warn { border-left-color: var(--yellow); }
   .tip.warn b { color: var(--yellow); }
   .grid16 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
-  .t16 { border: 2px solid #343b44; padding: 8px 12px; font-size: 14px; }
+  .t16 { text-decoration: none; border: 2px solid #343b44; padding: 8px 12px; font-size: 14px; }
   .t16 code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-weight: 700; color: var(--yellow); margin-right: 6px; }
   .t16.me { background: var(--yellow); color: var(--ink); border-color: var(--yellow); font-weight: 700; }
   .t16.me code { color: var(--ink); }
@@ -177,7 +186,7 @@
   <section class="screen" id="result">
     <div class="kicker">你的牛膜人格</div>
     <div class="code" id="rCode"></div>
-    <h1 class="display typename" id="rName"></h1>
+    <h2 class="display typename" id="rName"></h2>
     <p class="tagline" id="rLine"></p>
     <p class="desc" id="rDesc"></p>
 
@@ -194,7 +203,7 @@
 
     <h2 class="sub">16 种牛膜人格</h2>
     <div class="grid16" id="grid16"></div>
-    <p class="legend">B 有界 / O 在线（时间膜）· F 过滤 / S 海绵（情绪膜）· I 内参照 / E 外参照（评价膜）· H 我是我 / W 我是工位（身份膜）。黄色是厚膜，红色是薄膜。</p>
+    <p class="legend"><a href="../types/">16 种牛膜人格详细说明</a>。B 有界 / O 在线（时间膜）· F 过滤 / S 海绵（情绪膜）· I 内参照 / E 外参照（评价膜）· H 我是我 / W 我是工位（身份膜）。黄色是厚膜，红色是薄膜。</p>
   </section>
 </div>
 
@@ -393,7 +402,8 @@
     var grid = $('grid16');
     grid.innerHTML = '';
     Object.keys(TYPES).forEach(function (c) {
-      var d = document.createElement('div');
+      var d = document.createElement('a');
+      d.href = '../types/#' + c;
       d.className = 't16' + (c === code ? ' me' : '');
       d.innerHTML = '<code>' + c + '</code>' + TYPES[c].n;
       grid.appendChild(d);

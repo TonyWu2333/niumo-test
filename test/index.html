@@ -532,15 +532,16 @@
     return size + 2;
   }
 
+  // 在 size×size 的白底里画二维码：每格取整数像素，四周至少留 4 格空白，手机才扫得稳
   function drawQR(ctx, text, x, y, size) {
     if (typeof window.qrcode !== 'function') return false;
     var qr = window.qrcode(0, 'M');
     qr.addData(text); qr.make();
-    var n = qr.getModuleCount(), quiet = 2, cell = size / (n + quiet * 2);
-    ctx.fillStyle = '#ffffff'; ctx.fillRect(x, y, size, size);
-    ctx.fillStyle = '#26313d';
+    var n = qr.getModuleCount(), cell = Math.floor(size / (n + 8));
+    var ox = x + Math.floor((size - n * cell) / 2), oy = y + Math.floor((size - n * cell) / 2);
+    ctx.fillStyle = '#111111';
     for (var r = 0; r < n; r++) for (var c = 0; c < n; c++) {
-      if (qr.isDark(r, c)) ctx.fillRect(Math.floor(x + (c + quiet) * cell), Math.floor(y + (r + quiet) * cell), Math.ceil(cell), Math.ceil(cell));
+      if (qr.isDark(r, c)) ctx.fillRect(ox + c * cell, oy + r * cell, cell, cell);
     }
     return true;
   }
@@ -604,15 +605,15 @@
       y += 82;
     });
 
-    var bandY = H - 220;
-    ctx.fillStyle = BLUE; ctx.fillRect(0, bandY, W, 220);
-    var qrSize = 164, qrX = W - P - qrSize, qrY = bandY + 28;
-    ctx.fillStyle = '#ffffff'; rr(ctx, qrX - 8, qrY - 8, qrSize + 16, qrSize + 16, 18); ctx.fill();
+    var bandY = H - 240;
+    ctx.fillStyle = BLUE; ctx.fillRect(0, bandY, W, 240);
+    var qrSize = 200, qrX = W - P - qrSize, qrY = bandY + 20;
+    ctx.fillStyle = '#ffffff'; rr(ctx, qrX, qrY, qrSize, qrSize, 16); ctx.fill();
     var hasQR = drawQR(ctx, url, qrX, qrY, qrSize);
     ctx.fillStyle = '#ffffff'; ctx.font = '900 48px ' + FONT;
-    ctx.fillText(hasQR ? '扫码测你的牛膜人格' : '测测你的牛膜人格', P, bandY + 86);
-    ctx.font = '700 34px ' + FONT; ctx.fillText('niumo.tonywu.top', P, bandY + 140);
-    ctx.font = '500 26px ' + FONT; ctx.fillText('牛膜理论由吴天卓（tonywu）提出', P, bandY + 186);
+    ctx.fillText(hasQR ? '扫码测你的牛膜人格' : '测测你的牛膜人格', P, bandY + 96);
+    ctx.font = '700 34px ' + FONT; ctx.fillText('niumo.tonywu.top', P, bandY + 150);
+    ctx.font = '500 26px ' + FONT; ctx.fillText('牛膜理论由吴天卓（tonywu）提出', P, bandY + 196);
     return cv;
   }
 
@@ -621,7 +622,8 @@
     var modal = $('cardModal'), img = $('cardImg'), tip = $('cardTip'), dl = $('cardDl'), shareB = $('cardShare');
     modal.hidden = false; tip.textContent = '正在生成……'; img.removeAttribute('src'); shareB.hidden = true;
     var code = current.code, pcts = current.pcts;
-    var url = 'https://niumo.tonywu.top/test/#r=' + code + '&s=' + pcts.join(',');
+    // 二维码只放测试入口：内容越短，码越稀疏，越好扫
+    var url = 'https://niumo.tonywu.top/test/';
     var txt = 'NMTI牛膜人格测试我的是扫码测你的niumo.tonywu.top由吴天卓提出时间情绪评价身份' + code + TYPES[code].n + TYPES[code].s + TYPES[code].d;
     var fontsReady = (document.fonts && document.fonts.load)
       ? Promise.all([document.fonts.load('900 60px "Noto Sans SC"', txt), document.fonts.load('700 40px "Noto Sans SC"', txt), document.fonts.load('500 34px "Noto Sans SC"', txt)]).catch(function () {})

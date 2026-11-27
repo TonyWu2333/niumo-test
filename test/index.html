@@ -107,6 +107,15 @@
   .linkbtn { background: none; border: 0; color: var(--muted); font: inherit; font-size: 14px; cursor: pointer; padding: 0; margin-top: 18px; }
   .linkbtn:disabled { opacity: .3; cursor: default; }
 
+  /* 朋友分享来的结果：先引导自己测 */
+  .visit { background: var(--surface); border: 2px solid var(--bubble); border-radius: 28px; padding: 24px 22px; margin-top: 18px; text-align: center; box-shadow: 0 16px 40px rgba(74, 155, 224, 0.16); }
+  .visit[hidden] { display: none; }
+  .visit-note { margin: 0; color: var(--muted); font-size: 15px; }
+  .visit-q { font-size: clamp(30px, 7vw, 42px); margin: 6px 0 16px; }
+  .visit-btn { font-size: 20px; padding: 15px 34px; }
+  .visit-sub { margin: 10px 0 0; font-size: 14px; }
+  .btn[hidden] { display: none; }
+
   /* result */
   .rhead { display: grid; gap: 18px; margin-top: 24px; }
   .rimg { margin: 0; max-width: 260px; background: #fff; border: 1px solid var(--line); border-radius: 28px; overflow: hidden; box-shadow: 0 18px 40px rgba(38, 80, 120, 0.12); }
@@ -201,10 +210,16 @@
 
   <!-- result -->
   <section class="screen" id="result">
+    <div class="visit" id="rVisit" hidden>
+      <p class="visit-note">这是朋友分享给你的测试结果</p>
+      <p class="display visit-q">你是哪种<span class="hl">牛膜人格</span>？</p>
+      <button class="btn visit-btn" id="tryBtn" type="button">我也来试试 →</button>
+      <p class="dim visit-sub">20 道题，大概 3 分钟</p>
+    </div>
     <div class="rhead">
       <figure class="rimg"><img id="rImg" width="1086" height="1448" alt=""></figure>
       <div>
-        <div class="kicker">你的牛膜人格</div>
+        <div class="kicker" id="rKicker">你的牛膜人格</div>
         <div class="code" id="rCode"></div>
         <h2 class="display typename" id="rName"></h2>
         <p class="tagline" id="rLine"></p>
@@ -353,6 +368,9 @@
     OSEW: '拿着创可贴修补破洞牛膜的卡通小牛，膜上到处是缺口'
   };
 
+  var TRY_URL = 'https://niumo.tonywu.top/test/';
+  var MINE = 'niumo_my_result'; // 自己测出来的结果，用来区分"我的结果"和"朋友分享的结果"
+
   var answers = new Array(QUESTIONS.length);
   var cur = 0;
   var $ = function (id) { return document.getElementById(id); };
@@ -412,13 +430,22 @@
   function finish() {
     var pcts = score();
     var code = codeOf(pcts);
-    try { history.replaceState(null, '', '#r=' + code + '&s=' + pcts.join(',')); } catch (e) {}
-    renderResult(code, pcts);
+    var hash = '#r=' + code + '&s=' + pcts.join(',');
+    try { history.replaceState(null, '', hash); } catch (e) {}
+    try { localStorage.setItem(MINE, hash); } catch (e) {}
+    renderResult(code, pcts, false);
   }
 
-  function renderResult(code, pcts) {
+  // visitor = true：打开的是别人分享的结果，重点放在"我也来试试"
+  function renderResult(code, pcts, visitor) {
     var t = TYPES[code];
     current = { code: code, pcts: pcts };
+    $('rVisit').hidden = !visitor;
+    $('rKicker').textContent = visitor ? '朋友的牛膜人格' : '你的牛膜人格';
+    $('cardBtn').hidden = $('shareBtn').hidden = !!visitor;
+    $('againBtn').textContent = visitor ? '我也来试试 →' : '再测一次';
+    $('againBtn').className = visitor ? 'btn' : 'btn outline';
+    $('rPaid').hidden = !!visitor;
     var codeBox = $('rCode');
     codeBox.innerHTML = '';
     code.split('').forEach(function (ch, i) {
@@ -450,7 +477,7 @@
 
     var weakest = 0;
     pcts.forEach(function (p, i) { if (p < pcts[weakest]) weakest = i; });
-    $('rTip').innerHTML = '你最薄的一层是 <b>' + LAYERS[weakest].name + '</b>（' + pcts[weakest] + '%）。可以先补这一层：' + LAYERS[weakest].fix;
+    $('rTip').innerHTML = (visitor ? 'TA 最薄的一层是 <b>' : '你最薄的一层是 <b>') + LAYERS[weakest].name + '</b>（' + pcts[weakest] + '%）。可以先补这一层：' + LAYERS[weakest].fix;
 
     var dead = $('rDead');
     if (Math.min.apply(null, pcts) >= 85) {
@@ -459,7 +486,7 @@
     } else {
       dead.hidden = true;
     }
-    if (window.NiumoPaid) NiumoPaid.mount($('rPaid'), code);
+    if (window.NiumoPaid && !visitor) NiumoPaid.mount($('rPaid'), code);
 
     var grid = $('grid16');
     grid.innerHTML = '';
@@ -472,10 +499,9 @@
     });
 
     $('shareBtn').onclick = function () {
-      var url = location.origin + location.pathname + '#r=' + code + '&s=' + pcts.join(',');
+      // 分享出去的是测试入口，不是自己的结果页
       var text = '我的牛膜人格是 ' + code + ' ' + t.n + '（' + t.s + '）。' +
-        '时间膜 ' + pcts[0] + '%，情绪膜 ' + pcts[1] + '%，评价膜 ' + pcts[2] + '%，身份膜 ' + pcts[3] + '%。' +
-        '测测你的：' + url;
+        '你也来测测，看看你是哪种：' + TRY_URL;
       copy(text);
     };
     show('result');
@@ -623,7 +649,7 @@
     modal.hidden = false; tip.textContent = '正在生成……'; img.removeAttribute('src'); shareB.hidden = true;
     var code = current.code, pcts = current.pcts;
     // 二维码只放测试入口：内容越短，码越稀疏，越好扫
-    var url = 'https://niumo.tonywu.top/test/';
+    var url = TRY_URL;
     var txt = 'NMTI牛膜人格测试我的是扫码测你的niumo.tonywu.top由吴天卓提出时间情绪评价身份' + code + TYPES[code].n + TYPES[code].s + TYPES[code].d;
     var fontsReady = (document.fonts && document.fonts.load)
       ? Promise.all([document.fonts.load('900 60px "Noto Sans SC"', txt), document.fonts.load('700 40px "Noto Sans SC"', txt), document.fonts.load('500 34px "Noto Sans SC"', txt)]).catch(function () {})
@@ -673,6 +699,7 @@
 
   $('startBtn').addEventListener('click', restart);
   $('againBtn').addEventListener('click', restart);
+  $('tryBtn').addEventListener('click', restart);
   $('backBtn').addEventListener('click', function () { if (cur > 0) { cur--; renderQ(); } });
 
   document.addEventListener('keydown', function (e) {
@@ -687,7 +714,9 @@
     if (!m || !TYPES[m[1]]) return;
     var pcts = [m[2], m[3], m[4], m[5]].map(function (x) { return Math.min(100, parseInt(x, 10)); });
     if (codeOf(pcts) !== m[1]) return;
-    renderResult(m[1], pcts);
+    var mine = null;
+    try { mine = localStorage.getItem(MINE); } catch (e) {}
+    renderResult(m[1], pcts, mine !== location.hash);
   })();
 })();
 </script>

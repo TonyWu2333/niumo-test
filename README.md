@@ -1,8 +1,10 @@
-# 牛膜人格测试 NMTI
+# 牛膜理论 · 牛膜人格测试 NMTI
 
-基于吴天卓（tonywu）提出的[牛膜理论](https://tonywu.top/2026/11/27/niumo-theory/)的人格测试。
+牛膜理论由吴天卓（tonywu）提出：牛马可以被生活反复摩擦，但不能没有自己的保护膜。
 
-在线测试：https://tonywu2333.github.io/niumo-test/
+- 理论介绍：https://tonywu2333.github.io/niumo-test/
+- 牛膜人格测试：https://tonywu2333.github.io/niumo-test/test/
+- 完整原文：https://tonywu.top/2026/11/27/niumo-theory/
 
 ## 测试说明
 
@@ -17,11 +19,11 @@
 
 20 道题，每层 5 道（含反向计分题），四层组合出 16 种牛膜人格，例如 BFIH 钢化牛膜、OSEW 薄膜牛马。
 
-结果可以通过链接分享，例如 `#r=BSEH&s=70,30,25,65`。
+结果可以通过链接分享，例如 `test/#r=BSEH&s=70,30,25,65`。
 
 ## 技术
 
-单个静态 HTML 文件，无依赖，部署在 GitHub Pages。
+纯静态 HTML，无依赖，部署在 GitHub Pages。`index.html` 是理论介绍首页，`test/index.html` 是测试页。
 
 ---
 

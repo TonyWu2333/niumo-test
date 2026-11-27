@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>牛膜人格测试 NMTI：测测你是哪种牛膜人格</title>
+<meta name="description" content="基于吴天卓（tonywu）提出的牛膜理论，20 道题测出你的牛膜人格。按时间膜、情绪膜、评价膜、身份膜四层结构，共 16 种类型。">
+<link rel="canonical" href="https://tonywu2333.github.io/niumo-test/test/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="牛膜人格测试 NMTI：测测你是哪种牛膜人格">
+<meta property="og:description" content="基于吴天卓（tonywu）提出的牛膜理论，20 道题，16 种牛膜人格。">
+<meta property="og:url" content="https://tonywu2333.github.io/niumo-test/test/">
+<meta property="og:image" content="https://tonywu2333.github.io/niumo-test/cover.webp">
+<meta property="og:site_name" content="牛膜人格测试 NMTI">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ccircle cx=%2750%27 cy=%2750%27 r=%2744%27 fill=%27%23bfe3f1%27 stroke=%27%232386b8%27 stroke-width=%276%27/%3E%3C/svg%3E">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","@id":"https://tonywu2333.github.io/niumo-test/test/#webpage","url":"https://tonywu2333.github.io/niumo-test/test/","isPartOf":{"@id":"https://tonywu2333.github.io/niumo-test/#website"},"name":"牛膜人格测试 NMTI","description":"基于吴天卓（tonywu）提出的牛膜理论，20 道题测出你的牛膜人格，共 16 种类型。","inLanguage":"zh-CN","image":"https://tonywu2333.github.io/niumo-test/cover.webp","about":{"@type":"Thing","name":"牛膜理论","url":"https://tonywu2333.github.io/niumo-test/"},"author":{"@type":"Person","@id":"https://me.tonywu.top/#person","name":"Tony Wu","alternateName":["吴天卓","Wu Tianzhuo","tonywu"],"url":"https://me.tonywu.top/"}}
+</script>
+<style>
+  :root {
+    --bg-top: #e3f2f8;
+    --bg-bottom: #9fcfe2;
+    --ink: #12324a;
+    --muted: #4c6a80;
+    --accent: #2386b8;
+    --accent-ink: #ffffff;
+    --card: rgba(255, 255, 255, 0.72);
+    --card-edge: rgba(255, 255, 255, 0.9);
+    --track: rgba(18, 50, 74, 0.1);
+    --thin: #e9a23b;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    min-height: 100vh;
+    background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%) fixed;
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); }
+  .top {
+    max-width: 680px; margin: 0 auto; padding: 14px 16px 0;
+    display: flex; justify-content: space-between; align-items: center; font-size: 14px;
+  }
+  .top a { text-decoration: none; color: var(--muted); }
+  .top a:hover { color: var(--accent); }
+  main { max-width: 680px; margin: 0 auto; padding: 16px 16px 48px; }
+  .bubble {
+    background: var(--card);
+    border: 1px solid var(--card-edge);
+    border-radius: 28px;
+    box-shadow: 0 20px 50px rgba(18, 50, 74, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    padding: 28px 24px;
+  }
+  .screen { display: none; }
+  .screen.on { display: block; }
+  h1 { font-size: 30px; line-height: 1.3; margin: 0 0 6px; letter-spacing: 0.02em; }
+  h2 { font-size: 20px; margin: 28px 0 12px; }
+  .eyebrow { color: var(--accent); font-weight: 600; font-size: 14px; letter-spacing: 0.08em; }
+  .muted { color: var(--muted); }
+  .small { font-size: 13px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    border: 0; border-radius: 999px; padding: 12px 26px; font-size: 16px; cursor: pointer;
+    background: var(--accent); color: var(--accent-ink); font-family: inherit; text-decoration: none;
+    transition: transform .15s ease, box-shadow .15s ease;
+    box-shadow: 0 6px 16px rgba(35, 134, 184, 0.3);
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn.ghost { background: rgba(255, 255, 255, 0.85); color: var(--ink); box-shadow: none; border: 1px solid rgba(18, 50, 74, 0.12); }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+  .layers { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 18px 0 6px; }
+  .layer-chip { background: rgba(255, 255, 255, 0.7); border-radius: 16px; padding: 10px 12px; font-size: 14px; }
+  .layer-chip b { display: block; font-size: 15px; }
+  /* quiz */
+  .progress { height: 6px; background: var(--track); border-radius: 999px; overflow: hidden; margin-bottom: 14px; }
+  .progress > div { height: 100%; width: 0; background: var(--accent); transition: width .25s ease; }
+  .qmeta { display: flex; justify-content: space-between; font-size: 14px; color: var(--muted); }
+  .qtext { font-size: 21px; line-height: 1.55; margin: 18px 0 22px; min-height: 3.1em; }
+  .opts { display: grid; gap: 10px; }
+  .opt {
+    width: 100%; text-align: left; font: inherit; font-size: 16px; color: var(--ink);
+    background: rgba(255, 255, 255, 0.8); border: 1px solid rgba(18, 50, 74, 0.1);
+    border-radius: 16px; padding: 13px 16px; cursor: pointer; transition: background .12s ease, border-color .12s ease;
+  }
+  .opt:hover { border-color: var(--accent); }
+  .opt.picked { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .linkbtn { background: none; border: 0; color: var(--muted); font: inherit; font-size: 14px; cursor: pointer; padding: 0; margin-top: 16px; }
+  .linkbtn:disabled { opacity: .35; cursor: default; }
+  /* result */
+  .code { display: flex; gap: 8px; margin: 10px 0 4px; }
+  .code span {
+    width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center;
+    font-size: 26px; font-weight: 700; color: var(--accent-ink); background: var(--accent);
+    box-shadow: inset 0 -4px 10px rgba(0, 0, 0, 0.12), 0 6px 14px rgba(35, 134, 184, 0.25);
+  }
+  .code span.thin { background: var(--thin); box-shadow: inset 0 -4px 10px rgba(0, 0, 0, 0.1), 0 6px 14px rgba(233, 162, 59, 0.25); }
+  .typename { font-size: 28px; font-weight: 700; margin: 8px 0 2px; }
+  .bars { display: grid; gap: 16px; margin-top: 8px; }
+  .bar-head { display: flex; justify-content: space-between; font-size: 14px; }
+  .bar-head b { font-size: 15px; }
+  .bar { position: relative; height: 12px; background: var(--track); border-radius: 999px; overflow: hidden; margin: 6px 0 4px; }
+  .bar > div { height: 100%; border-radius: 999px; background: var(--accent); }
+  .bar > div.thin { background: var(--thin); }
+  .bar-poles { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
+  .tip { background: rgba(255, 255, 255, 0.75); border-radius: 18px; padding: 14px 16px; margin-top: 18px; }
+  .tip b { color: var(--accent); }
+  .grid16 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .t16 { background: rgba(255, 255, 255, 0.65); border-radius: 14px; padding: 9px 12px; font-size: 14px; border: 1px solid transparent; }
+  .t16 code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-weight: 700; color: var(--accent); margin-right: 6px; }
+  .t16.me { border-color: var(--accent); background: rgba(255, 255, 255, 0.95); }
+  .legend { font-size: 13px; color: var(--muted); margin-top: 10px; }
+  .toast { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%); background: var(--ink); color: #fff; padding: 9px 18px; border-radius: 999px; font-size: 14px; opacity: 0; transition: opacity .2s ease; pointer-events: none; }
+  .toast.on { opacity: 1; }
+  footer { text-align: center; font-size: 13px; color: var(--muted); padding: 0 16px 32px; }
+  @media (min-width: 560px) {
+    .grid16 { grid-template-columns: repeat(4, 1fr); }
+    .layers { grid-template-columns: repeat(4, 1fr); }
+    .bubble { padding: 36px 36px; }
+  }
+</style>
+</head>
+<body>
+<div class="top">
+  <a href="../">← 牛膜理论</a>
+  <a href="https://me.tonywu.top/">作者：吴天卓</a>
+</div>
+
+<main>
+  <!-- intro -->
+  <section class="screen on bubble" id="intro">
+    <div class="eyebrow">NMTI · 牛膜人格测试</div>
+    <h1>测测你是哪种牛膜人格</h1>
+    <p class="muted">基于吴天卓（tonywu）提出的<a href="../">牛膜理论</a>。牛膜分四层，每一层有厚有薄，组合起来一共 16 种牛膜人格。</p>
+    <div class="layers">
+      <div class="layer-chip"><b>时间膜</b>工作和自己的时间</div>
+      <div class="layer-chip"><b>情绪膜</b>别人的情绪和自己的</div>
+      <div class="layer-chip"><b>评价膜</b>外界评价和自我价值</div>
+      <div class="layer-chip"><b>身份膜</b>工作身份和"我"</div>
+    </div>
+    <p class="muted small">一共 20 道题，大约 3 分钟。按第一反应选就行，没有对错。</p>
+    <div class="btn-row"><button class="btn" id="startBtn">开始测试</button></div>
+  </section>
+
+  <!-- quiz -->
+  <section class="screen bubble" id="quiz">
+    <div class="progress"><div id="progBar"></div></div>
+    <div class="qmeta"><span id="qCount">第 1 / 20 题</span><span>牛膜人格测试</span></div>
+    <div class="qtext" id="qText"></div>
+    <div class="opts" id="opts"></div>
+    <button class="linkbtn" id="backBtn">← 上一题</button>
+  </section>
+
+  <!-- result -->
+  <section class="screen" id="result">
+    <div class="bubble">
+      <div class="eyebrow">你的牛膜人格</div>
+      <div class="code" id="rCode"></div>
+      <div class="typename" id="rName"></div>
+      <p class="muted" id="rLine"></p>
+      <p id="rDesc"></p>
+
+      <h2>四层牛膜厚度</h2>
+      <div class="bars" id="rBars"></div>
+
+      <div class="tip" id="rTip"></div>
+      <div class="tip" id="rDead" hidden></div>
+
+      <div class="btn-row">
+        <button class="btn" id="shareBtn">复制结果分享</button>
+        <button class="btn ghost" id="againBtn">再测一次</button>
+        <a class="btn ghost" href="../">了解牛膜理论</a>
+      </div>
+    </div>
+
+    <div class="bubble" style="margin-top:16px">
+      <h2 style="margin-top:0">16 种牛膜人格</h2>
+      <div class="grid16" id="grid16"></div>
+      <p class="legend">字母含义：B 有界 / O 在线（时间膜）· F 过滤 / S 海绵（情绪膜）· I 内参照 / E 外参照（评价膜）· H 我是我 / W 我是工位（身份膜）。蓝色是厚膜，橙色是薄膜。</p>
+    </div>
+  </section>
+</main>
+
+<footer>牛膜理论由吴天卓（tonywu）提出 · <a href="../">牛膜理论</a> · <a href="https://tonywu.top/2026/11/27/niumo-theory/">原文</a> · <a href="https://github.com/TonyWu2333/niumo-test">GitHub</a></footer>
+<div class="toast" id="toast"></div>
+
+<script>
+(function () {
+  // 四层膜：厚的一极在前，薄的一极在后
+  var LAYERS = [
+    { key: 'time', name: '时间膜', thick: { l: 'B', n: '有界' }, thin: { l: 'O', n: '在线' },
+      fix: '牛膜时间：每天留一段固定时间不看也不回工作消息；不着急的消息不秒回，攒一攒再统一处理。' },
+    { key: 'emo', name: '情绪膜', thick: { l: 'F', n: '过滤' }, thin: { l: 'S', n: '海绵' },
+      fix: '归因分离：遇到冲突先问一句"这是谁的问题"。是自己的就改，不是自己的就不揽。' },
+    { key: 'eval', name: '评价膜', thick: { l: 'I', n: '内参照' }, thin: { l: 'E', n: '外参照' },
+      fix: '管好参照系：和过去的自己比，少拿别人的高光和自己的日常比。别人的评价是参考，不是判决。' },
+    { key: 'id', name: '身份膜', thick: { l: 'H', n: '我是我' }, thin: { l: 'W', n: '我是工位' },
+      fix: '第二身份：在工作之外给自己一个认可的身份，比如爱好、作品或者圈子；把 AI 当工具，不拿它衡量自己。' }
+  ];
+
+  // k: 对应第几层；r: true 表示"同意"代表膜薄（反向计分）
+  var QUESTIONS = [
+    { k: 0, r: true,  t: '下班后收到工作消息，我基本都会马上回。' },
+    { k: 1, r: true,  t: '同事或领导脸色不好，我会先想是不是自己哪里做错了。' },
+    { k: 2, r: true,  t: '被批评一次，我会难受好几天。' },
+    { k: 3, r: true,  t: '如果明天失业了，我会觉得自己一无是处。' },
+    { k: 0, r: false, t: '我每天有一段固定的时间，是完全不处理工作的。' },
+    { k: 1, r: false, t: '别人发脾气的时候，我能分清哪些是冲我来的，哪些只是他自己心情不好。' },
+    { k: 2, r: false, t: '别人的评价我会参考，但不会全盘接受。' },
+    { k: 3, r: false, t: '工作之外，我有自己很认可的爱好或者身份。' },
+    { k: 0, r: true,  t: '周末休息的时候，我脑子里还是经常在过工作的事。' },
+    { k: 1, r: true,  t: '别人跟我吐槽完，他舒服了，我反而一整天都不太好。' },
+    { k: 2, r: true,  t: '刷到同龄人升职、买房、创业，我会觉得自己很失败。' },
+    { k: 3, r: true,  t: '别人问我是做什么的，我第一反应是报公司和职位，好像这就是我。' },
+    { k: 0, r: false, t: '不着急的消息，我会攒一攒再统一回。' },
+    { k: 1, r: false, t: '跟人起了冲突，我一般睡一觉就过去了。' },
+    { k: 2, r: false, t: '我更习惯拿现在的自己和以前的自己比。' },
+    { k: 3, r: false, t: '看到 AI 能做我的一部分工作，我更多想的是怎么用它。' },
+    { k: 0, r: true,  t: '别人临时找我加活，我很少拒绝。' },
+    { k: 1, r: true,  t: '为了不让气氛尴尬，我经常委屈自己顺着别人。' },
+    { k: 2, r: true,  t: '我很在意别人怎么看我的工作。' },
+    { k: 3, r: true,  t: '绩效不好的时候，我会怀疑自己这个人是不是不行。' }
+  ];
+
+  var OPTIONS = [
+    { v: 5, t: '非常同意' },
+    { v: 4, t: '比较同意' },
+    { v: 3, t: '说不清' },
+    { v: 2, t: '不太同意' },
+    { v: 1, t: '非常不同意' }
+  ];
+
+  var TYPES = {
+    BFIH: { n: '钢化牛膜', s: '四层膜都挺厚',
+      d: '活照干，下班能放下，别人的情绪和评价也很难伤到你，工作出了问题也不会怀疑自己。要注意的是别厚成死膜：有用的反馈和别人的善意，记得放进来。' },
+    OFIH: { n: '在线佛系牛', s: '人随时在线，心不慌',
+      d: '消息随时回，活随时接，但心态很稳，别人怎么说、公司怎么样都不太影响你。问题在于时间一直被切碎，累是身体先累。' },
+    BSIH: { n: '情绪海绵牛', s: '边界清楚，就是爱吸别人的情绪',
+      d: '下班时间守得住，自我认知也清楚，就是容易吸收周围人的情绪。领导脸色一变，你先紧张起来；朋友吐槽一通，你难受一整天。' },
+    BFEH: { n: '排名焦虑牛', s: '什么都稳，除了比较',
+      d: '边界清楚，情绪稳定，工作和自己也分得开，但很在意自己在别人眼里排第几。刷到同龄人的好消息，比加班还难受。' },
+    BFIW: { n: '以司为家牛', s: '各方面都稳，只是太把工作当自己',
+      d: '时间、情绪、评价都处理得不错，只是岗位和你几乎是一体的。平时看不出问题，一旦换工作或者被优化，冲击会特别大。' },
+    OSIH: { n: '全天候客服牛', s: '随叫随到，还负责安抚所有人',
+      d: '谁找你都在，谁不高兴你都接着。好在你对自己的判断不太受外界影响，也知道工作不等于自己，所以还撑得住。' },
+    OFEH: { n: '卷王预备牛', s: '时间全给工作，还很在意排名',
+      d: '情绪倒是挺能扛，但时间没有边界，又很在乎别人的评价。这种组合很容易越卷越累，卷到最后自己都说不清在卷什么。' },
+    OFIW: { n: '主人翁牛', s: '把公司的事当自己的事',
+      d: '随时在线，也觉得工作就是自己的全部，干劲很足，心态也稳。只是所有的支点都押在了同一个地方。' },
+    BSEH: { n: '讨好型牛', s: '人准点走，心还在看别人脸色',
+      d: '能准时下班，也知道工作不等于自己，但很在意别人的情绪和看法，经常为了不得罪人委屈自己。' },
+    BSIW: { n: '老实人牛', s: '默默扛事的那种',
+      d: '别人的情绪你接着，工作你看得很重，但下班时间守得住，对自己的评价也还算稳。属于不声不响把事情都扛下来的人。' },
+    BFEW: { n: 'KPI 牛', s: '自我价值全靠绩效撑着',
+      d: '时间和情绪都有边界，但对自己的认可几乎全靠绩效和职位。考核一出问题，整个人跟着往下掉。' },
+    OSEH: { n: '心里有退路的苦牛', s: '三层都被穿透，但底牌还在',
+      d: '时间、情绪、评价三层都薄，每天都挺累。好在你清楚工作不等于自己，这是你最后的底牌，也是修膜的起点。' },
+    OSIW: { n: '自洽的老黄牛', s: '自己觉得值就行',
+      d: '随叫随到，情绪照单全收，工作就是生活的全部。但你不太在乎别人怎么评价，只要自己觉得值，就能一直干下去。' },
+    OFEW: { n: '情绪稳定的卷王', s: '看起来很稳，其实挺悬',
+      d: '时间全在工作上，很看重排名，也把岗位当成了自己。唯一扛得住的是情绪，所以外人看你一直很稳，其实支撑点不多。' },
+    BSEW: { n: '准点下班的内耗牛', s: '人走了，心没走',
+      d: '人是准点走了，但别人的情绪、评价和工作上的得失，会跟着你一路回家，下了班还在脑子里转。' },
+    OSEW: { n: '薄膜牛马', s: '四层膜都很薄',
+      d: '外面一点动静都能直接穿进来，干得多，想得也多。别急着一下子改全部，先从最薄的那一层开始补。' }
+  };
+
+  var answers = new Array(QUESTIONS.length);
+  var cur = 0;
+  var $ = function (id) { return document.getElementById(id); };
+
+  function show(id) {
+    ['intro', 'quiz', 'result'].forEach(function (s) { $(s).classList.toggle('on', s === id); });
+    window.scrollTo(0, 0);
+  }
+
+  function renderQ() {
+    var q = QUESTIONS[cur];
+    $('qCount').textContent = '第 ' + (cur + 1) + ' / ' + QUESTIONS.length + ' 题';
+    $('progBar').style.width = (cur / QUESTIONS.length * 100) + '%';
+    $('qText').textContent = q.t;
+    var box = $('opts');
+    box.innerHTML = '';
+    OPTIONS.forEach(function (o, i) {
+      var b = document.createElement('button');
+      b.className = 'opt' + (answers[cur] === o.v ? ' picked' : '');
+      b.type = 'button';
+      b.textContent = o.t;
+      b.addEventListener('click', function () { pick(o.v); });
+      box.appendChild(b);
+    });
+    $('backBtn').disabled = cur === 0;
+  }
+
+  var locked = false;
+  function pick(v) {
+    if (locked) return;
+    answers[cur] = v;
+    renderQ();
+    locked = true;
+    setTimeout(function () {
+      locked = false;
+      if (cur < QUESTIONS.length - 1) { cur++; renderQ(); }
+      else { finish(); }
+    }, 180);
+  }
+
+  function score() {
+    var sums = [0, 0, 0, 0], max = [0, 0, 0, 0];
+    QUESTIONS.forEach(function (q, i) {
+      var a = answers[i];
+      // 0..4，越大代表膜越厚
+      var pts = q.r ? (5 - a) : (a - 1);
+      sums[q.k] += pts;
+      max[q.k] += 4;
+    });
+    return sums.map(function (s, i) { return Math.round(s / max[i] * 100); });
+  }
+
+  function codeOf(pcts) {
+    return pcts.map(function (p, i) { return p >= 50 ? LAYERS[i].thick.l : LAYERS[i].thin.l; }).join('');
+  }
+
+  function finish() {
+    var pcts = score();
+    var code = codeOf(pcts);
+    try { history.replaceState(null, '', '#r=' + code + '&s=' + pcts.join(',')); } catch (e) {}
+    renderResult(code, pcts);
+  }
+
+  function renderResult(code, pcts) {
+    var t = TYPES[code];
+    var codeBox = $('rCode');
+    codeBox.innerHTML = '';
+    code.split('').forEach(function (ch, i) {
+      var s = document.createElement('span');
+      s.textContent = ch;
+      if (ch === LAYERS[i].thin.l) s.className = 'thin';
+      s.title = LAYERS[i].name + '：' + (ch === LAYERS[i].thin.l ? LAYERS[i].thin.n : LAYERS[i].thick.n);
+      codeBox.appendChild(s);
+    });
+    $('rName').textContent = code + ' ' + t.n;
+    $('rLine').textContent = t.s;
+    $('rDesc').textContent = t.d;
+
+    var bars = $('rBars');
+    bars.innerHTML = '';
+    LAYERS.forEach(function (L, i) {
+      var thin = pcts[i] < 50;
+      var row = document.createElement('div');
+      row.innerHTML =
+        '<div class="bar-head"><b>' + L.name + '</b><span>厚度 ' + pcts[i] + '%</span></div>' +
+        '<div class="bar"><div class="' + (thin ? 'thin' : '') + '" style="width:' + Math.max(pcts[i], 3) + '%"></div></div>' +
+        '<div class="bar-poles"><span>' + L.thin.l + ' ' + L.thin.n + '（薄）</span><span>（厚）' + L.thick.n + ' ' + L.thick.l + '</span></div>';
+      bars.appendChild(row);
+    });
+
+    var weakest = 0;
+    pcts.forEach(function (p, i) { if (p < pcts[weakest]) weakest = i; });
+    $('rTip').innerHTML = '你最薄的一层是 <b>' + LAYERS[weakest].name + '</b>（厚度 ' + pcts[weakest] + '%）。建议优先补这一层：' + LAYERS[weakest].fix;
+
+    var dead = $('rDead');
+    if (Math.min.apply(null, pcts) >= 85) {
+      dead.hidden = false;
+      dead.innerHTML = '四层都在 85% 以上。按牛膜理论的<b>选择透过性</b>，好的牛膜不是越厚越好：有用的批评、真正紧急的事和别人的善意，要让它们进得来，别厚成死膜。';
+    } else {
+      dead.hidden = true;
+    }
+
+    var grid = $('grid16');
+    grid.innerHTML = '';
+    Object.keys(TYPES).forEach(function (c) {
+      var d = document.createElement('div');
+      d.className = 't16' + (c === code ? ' me' : '');
+      d.innerHTML = '<code>' + c + '</code>' + TYPES[c].n;
+      grid.appendChild(d);
+    });
+
+    $('shareBtn').onclick = function () {
+      var url = location.origin + location.pathname + '#r=' + code + '&s=' + pcts.join(',');
+      var text = '我的牛膜人格是 ' + code + ' ' + t.n + '：' + t.s + '。' +
+        '时间膜 ' + pcts[0] + '%、情绪膜 ' + pcts[1] + '%、评价膜 ' + pcts[2] + '%、身份膜 ' + pcts[3] + '%。' +
+        '来测测你的牛膜人格：' + url;
+      copy(text);
+    };
+    show('result');
+  }
+
+  function copy(text) {
+    function fallback() {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      toast(ok ? '已复制，去粘贴分享吧' : '复制失败，请手动复制地址栏');
+    }
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(function () { toast('已复制，去粘贴分享吧'); }, fallback);
+    } else { fallback(); }
+  }
+
+  var toastTimer;
+  function toast(msg) {
+    var el = $('toast');
+    el.textContent = msg; el.classList.add('on');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { el.classList.remove('on'); }, 1800);
+  }
+
+  function restart() {
+    answers = new Array(QUESTIONS.length);
+    cur = 0;
+    try { history.replaceState(null, '', location.pathname); } catch (e) {}
+    renderQ();
+    show('quiz');
+  }
+
+  $('startBtn').addEventListener('click', restart);
+  $('againBtn').addEventListener('click', restart);
+  $('backBtn').addEventListener('click', function () { if (cur > 0) { cur--; renderQ(); } });
+
+  document.addEventListener('keydown', function (e) {
+    if (!$('quiz').classList.contains('on')) return;
+    var n = parseInt(e.key, 10);
+    if (n >= 1 && n <= 5) pick(OPTIONS[n - 1].v);
+  });
+
+  // 分享链接直接显示结果：#r=BFIH&s=72,40,55,80
+  (function fromHash() {
+    var m = /#r=([A-Z]{4})&s=(\d{1,3}),(\d{1,3}),(\d{1,3}),(\d{1,3})$/.exec(location.hash);
+    if (!m || !TYPES[m[1]]) return;
+    var pcts = [m[2], m[3], m[4], m[5]].map(function (x) { return Math.min(100, parseInt(x, 10)); });
+    if (codeOf(pcts) !== m[1]) return;
+    renderResult(m[1], pcts);
+  })();
+})();
+</script>
+</body>
+</html>

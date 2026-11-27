@@ -29,3 +29,5 @@
 ---
 
 牛膜理论由吴天卓（tonywu）提出，引用请注明出处。
+
+旧版黑黄海报风格保存在 git 标签 `poster-style`，恢复方法：`git checkout poster-style -- index.html test/index.html types/index.html`。

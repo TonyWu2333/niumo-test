@@ -22,8 +22,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="author" content="吴天卓（Tony Wu）">
 <link rel="author" href="https://me.tonywu.top/">
-<meta name="theme-color" content="#0d0f12">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2720%27 fill=%27%230d0f12%27/%3E%3Ccircle cx=%2750%27 cy=%2750%27 r=%2732%27 fill=%27none%27 stroke=%27%236fe3ff%27 stroke-width=%278%27/%3E%3Ccircle cx=%2750%27 cy=%2750%27 r=%2711%27 fill=%27%23ffd60a%27/%3E%3C/svg%3E">
+<meta name="theme-color" content="#f5f9fd">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ccircle cx=%2750%27 cy=%2750%27 r=%2744%27 fill=%27%23eaf4fd%27 stroke=%27%234a9be0%27 stroke-width=%276%27/%3E%3Ccircle cx=%2750%27 cy=%2750%27 r=%2714%27 fill=%27%23ffcf3f%27/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500;700;900&display=swap" rel="stylesheet">
@@ -32,63 +32,65 @@
 </script>
 <style>
   :root {
-    --ink: #0d0f12; --paper: #f4efe4; --yellow: #ffd60a; --cyan: #6fe3ff; --red: #ff5a4e;
-    --on-dark: #e9ecef; --dim-dark: #8f99a3; --line: #2a3038;
+    --bg: #f5f9fd; --surface: #ffffff; --tint: #eaf4fd; --tint-2: #fff6d9; --ink: #26313d; --muted: #667382; --line: #e2eaf3;
+    --blue: #4a9be0; --blue-d: #2f7fc4; --bubble: #bfe0fa; --yellow: #ffcf3f; --coral: #ff7468;
     --display: "Noto Sans SC", -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; }
   html { scroll-behavior: smooth; }
   body {
-    background: var(--ink); color: var(--on-dark); line-height: 1.75; -webkit-font-smoothing: antialiased;
+    background: var(--bg); color: var(--ink); line-height: 1.8; -webkit-font-smoothing: antialiased;
     font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
   }
-  a { color: inherit; }
-  .wrap { max-width: 860px; margin: 0 auto; padding: 0 20px; }
-  .display { font-family: var(--display); font-weight: 900; line-height: 1.15; letter-spacing: -0.01em; }
-  .hl { color: var(--yellow); }
-  .dim { color: var(--dim-dark); }
-  .top { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; font-size: 14px; }
-  .top .brand { font-family: var(--display); font-weight: 900; font-size: 18px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
-  .top .brand i { width: 18px; height: 18px; border-radius: 50%; border: 3px solid var(--cyan); display: inline-block; position: relative; }
-  .top .brand i::after { content: ""; position: absolute; inset: 3px; border-radius: 50%; background: var(--yellow); }
-  .top nav a { text-decoration: none; color: var(--dim-dark); margin-left: 18px; }
-  .top nav a:hover { color: var(--yellow); }
-  h1 { font-size: clamp(40px, 8vw, 64px); margin: 24px 0 14px; }
+  a { color: var(--blue-d); }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+  .display { font-family: var(--display); font-weight: 900; line-height: 1.2; letter-spacing: -0.01em; }
+  .hl { color: var(--blue); position: relative; white-space: nowrap; }
+  .hl::after { content: ""; position: absolute; left: -2%; right: -2%; bottom: 0.06em; height: 0.28em; background: var(--yellow); opacity: .55; border-radius: 6px; z-index: -1; }
+  .dim { color: var(--muted); }
+  .top { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; font-size: 15px; }
+  .top .brand { font-family: var(--display); font-weight: 900; font-size: 19px; text-decoration: none; color: var(--ink); display: inline-flex; align-items: center; gap: 8px; }
+  .top .brand i { width: 22px; height: 22px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff 0 22%, var(--bubble) 23% 100%); border: 2px solid var(--blue); display: inline-block; }
+  .top nav a { text-decoration: none; color: var(--muted); margin-left: 18px; }
+  .top nav a:hover { color: var(--blue-d); }
+  h1 { font-size: clamp(38px, 8vw, 60px); margin: 24px 0 14px; }
   .lede { font-size: 18px; max-width: 36em; }
-  table.legend { border-collapse: collapse; margin: 20px 0 8px; width: 100%; max-width: 560px; font-size: 15px; }
-  table.legend th, table.legend td { border: 2px solid var(--line); padding: 8px 12px; text-align: left; }
-  table.legend th { color: var(--dim-dark); font-weight: 700; }
-  table.legend b { color: var(--yellow); font-family: ui-monospace, "SF Mono", Menlo, monospace; }
-  table.legend td:last-child b { color: var(--red); }
-  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 26px 0 10px; }
-  .chips a { border: 2px solid #343b44; padding: 5px 12px; font-size: 14px; text-decoration: none; }
-  .chips a:hover { border-color: var(--yellow); }
-  .chips code, .type h2 code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-weight: 700; color: var(--yellow); margin-right: 6px; }
-  .type { border-top: 3px solid var(--on-dark); padding: 26px 0 30px; scroll-margin-top: 12px; display: grid; gap: 18px; }
-  .timg { margin: 0; max-width: 220px; background: #fff; border: 3px solid var(--on-dark); box-shadow: 6px 6px 0 var(--yellow); }
+  table.legend { border-collapse: separate; border-spacing: 0; margin: 20px 0 8px; width: 100%; max-width: 560px; font-size: 15px; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+  table.legend th, table.legend td { padding: 9px 14px; text-align: left; border-bottom: 1px solid var(--line); }
+  table.legend tr:last-child td { border-bottom: 0; }
+  table.legend th { color: var(--muted); font-weight: 700; background: var(--tint); }
+  table.legend b { color: var(--blue-d); font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+  table.legend td:last-child b { color: var(--coral); }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 26px 0 16px; }
+  .chips a { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 5px 14px; font-size: 14px; text-decoration: none; color: var(--ink); }
+  .chips a:hover { border-color: var(--bubble); }
+  .chips code, .type h2 code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-weight: 700; color: var(--blue-d); margin-right: 6px; }
+  .type { background: var(--surface); border: 1px solid var(--line); border-radius: 28px; box-shadow: 0 10px 30px rgba(38, 80, 120, 0.06); padding: 22px; margin-top: 18px; scroll-margin-top: 16px; display: grid; gap: 18px; }
+  .timg { margin: 0; max-width: 220px; background: #fff; border-radius: 22px; overflow: hidden; border: 1px solid var(--line); }
   .timg img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 58%; }
-  .type h2 { font-family: var(--display); font-weight: 900; font-size: clamp(30px, 5vw, 42px); line-height: 1.2; margin: 0 0 4px; }
-  .type .tagline { font-family: var(--display); font-weight: 700; color: var(--yellow); font-size: 18px; margin: 0 0 8px; }
+  .type h2 { font-family: var(--display); font-weight: 900; font-size: clamp(28px, 5vw, 38px); line-height: 1.25; margin: 0 0 4px; }
+  .type .tagline { font-family: var(--display); font-weight: 700; color: var(--blue-d); font-size: 18px; margin: 0 0 8px; }
   .type p { margin: 0 0 12px; font-size: 17px; max-width: 38em; }
-  .type h3 { font-family: var(--display); font-weight: 900; font-size: 17px; margin: 14px 0 6px; color: var(--cyan); }
-  ul.comp { list-style: none; padding: 0; margin: 10px 0 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
-  ul.comp li { padding: 6px 10px; font-size: 14px; border: 2px solid var(--line); }
-  ul.comp li span { font-family: var(--display); font-weight: 900; margin-right: 6px; }
-  ul.comp li.thick { border-color: var(--yellow); }
-  ul.comp li.thin { border-color: var(--red); }
-  ul.adv { margin: 0; padding-left: 1.2em; color: var(--on-dark); }
+  .type h3 { font-family: var(--display); font-weight: 900; font-size: 16px; margin: 14px 0 6px; color: var(--ink); }
+  ul.comp { list-style: none; padding: 0; margin: 10px 0 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  ul.comp li { padding: 6px 12px; font-size: 14px; border-radius: 12px; background: var(--tint); color: var(--blue-d); }
+  ul.comp li span { font-family: var(--display); font-weight: 900; margin-right: 6px; color: var(--ink); }
+  ul.comp li.thin { background: #ffeceb; color: #c4473d; }
+  ul.adv { margin: 0; padding-left: 1.2em; color: var(--muted); }
   ul.adv li { margin-bottom: 4px; }
+  ul.adv b { color: var(--ink); }
   .btn {
-    display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-family: var(--display); font-weight: 900; font-size: 18px;
-    padding: 13px 24px; border: 3px solid var(--yellow); background: var(--yellow); color: var(--ink); box-shadow: 6px 6px 0 rgba(255, 214, 10, 0.35);
+    display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-family: var(--display); font-weight: 900; font-size: 17px;
+    border-radius: 999px; padding: 14px 28px; background: var(--blue); color: #fff; box-shadow: 0 10px 22px rgba(74, 155, 224, 0.28);
   }
-  .cta { border-top: 3px solid var(--on-dark); padding: 40px 0 60px; }
-  .cta h2 { font-size: clamp(30px, 6vw, 48px); margin: 0 0 14px; }
-  footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--dim-dark); font-size: 14px; }
+  .cta { text-align: center; padding: 50px 0 60px; }
+  .cta h2 { font-size: clamp(30px, 6vw, 46px); margin: 0 0 8px; }
+  footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--muted); font-size: 14px; }
   footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; }
-  footer a { color: var(--on-dark); }
-  @media (min-width: 640px) { ul.comp { grid-template-columns: repeat(4, 1fr); } .type { grid-template-columns: 200px 1fr; gap: 30px; align-items: start; } }
+  @media (min-width: 640px) { ul.comp { grid-template-columns: repeat(4, 1fr); } .type { grid-template-columns: 200px 1fr; gap: 30px; align-items: start; padding: 28px; } }
+  .brand, .top .brand, .top nav { white-space: nowrap; }
+  @media (max-width: 480px) { .top nav a { margin-left: 10px; font-size: 14px; } .top .brand, .brand { font-size: 17px; } }
 </style>
 </head>
 <body>

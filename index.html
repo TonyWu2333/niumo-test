@@ -30,8 +30,8 @@
 <meta property="og:locale" content="zh_CN">
 <meta name="author" content="吴天卓（Tony Wu）">
 <link rel="author" href="https://me.tonywu.top/">
-<meta name="theme-color" content="#0d0f12">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2720%27 fill=%27%230d0f12%27/%3E%3Ccircle cx=%2750%27 cy=%2750%27 r=%2732%27 fill=%27none%27 stroke=%27%236fe3ff%27 stroke-width=%278%27/%3E%3Ccircle cx=%2750%27 cy=%2750%27 r=%2711%27 fill=%27%23ffd60a%27/%3E%3C/svg%3E">
+<meta name="theme-color" content="#f5f9fd">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ccircle cx=%2750%27 cy=%2750%27 r=%2744%27 fill=%27%23eaf4fd%27 stroke=%27%234a9be0%27 stroke-width=%276%27/%3E%3Ccircle cx=%2750%27 cy=%2750%27 r=%2714%27 fill=%27%23ffcf3f%27/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500;700;900&display=swap" rel="stylesheet">
@@ -40,15 +40,18 @@
 </script>
 <style>
   :root {
-    --ink: #0d0f12;
-    --ink-2: #1a1e24;
-    --paper: #f4efe4;
-    --yellow: #ffd60a;
-    --cyan: #6fe3ff;
-    --red: #ff5a4e;
-    --on-dark: #e9ecef;
-    --dim-dark: #8f99a3;
-    --dim-paper: #5d6168;
+    --bg: #f5f9fd;
+    --surface: #ffffff;
+    --tint: #eaf4fd;
+    --tint-2: #fff6d9;
+    --ink: #26313d;
+    --muted: #667382;
+    --line: #e2eaf3;
+    --blue: #4a9be0;
+    --blue-d: #2f7fc4;
+    --bubble: #bfe0fa;
+    --yellow: #ffcf3f;
+    --coral: #ff7468;
     --display: "Noto Sans SC", -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
   }
   * { box-sizing: border-box; }
@@ -56,208 +59,175 @@
   html, body { overflow-x: hidden; }
   @supports (overflow: clip) { html, body { overflow-x: clip; } }
   body {
-    background: var(--ink);
-    color: var(--on-dark);
+    background: var(--bg); color: var(--ink); line-height: 1.8; -webkit-font-smoothing: antialiased;
     font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
-    line-height: 1.75;
-    -webkit-font-smoothing: antialiased;
   }
-  a { color: inherit; }
-  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
-  .display { font-family: var(--display); font-weight: 900; letter-spacing: -0.01em; line-height: 1.12; }
-  .hl { color: var(--yellow); }
+  a { color: var(--blue-d); }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .display { font-family: var(--display); font-weight: 900; line-height: 1.2; letter-spacing: -0.01em; }
+  .hl { color: var(--blue); position: relative; white-space: nowrap; }
+  .hl::after { content: ""; position: absolute; left: -2%; right: -2%; bottom: 0.06em; height: 0.28em; background: var(--yellow); opacity: .55; border-radius: 6px; z-index: -1; }
+  .muted { color: var(--muted); }
+  .pill { display: inline-block; font-family: var(--display); font-weight: 700; font-size: 14px; color: var(--blue-d); background: var(--tint); padding: 4px 14px; border-radius: 999px; }
   .btn {
-    display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
-    font-family: var(--display); font-weight: 900; font-size: 18px;
-    padding: 14px 26px; border: 3px solid var(--ink); background: var(--yellow); color: var(--ink);
-    box-shadow: 6px 6px 0 var(--ink); transition: transform .12s ease, box-shadow .12s ease;
+    display: inline-flex; align-items: center; gap: 8px; text-decoration: none; cursor: pointer;
+    font-family: var(--display); font-weight: 900; font-size: 17px; border-radius: 999px; padding: 14px 28px;
+    background: var(--blue); color: #fff; border: 2px solid var(--blue);
+    box-shadow: 0 10px 22px rgba(74, 155, 224, 0.28); transition: transform .15s ease, box-shadow .15s ease;
   }
-  .btn:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 var(--ink); }
-  .btn:active { transform: translate(3px, 3px); box-shadow: 3px 3px 0 var(--ink); }
-  .on-dark .btn { border-color: var(--yellow); box-shadow: 6px 6px 0 rgba(255, 214, 10, 0.35); }
-  .btn.outline { background: transparent; color: var(--on-dark); border-color: var(--on-dark); box-shadow: none; }
-  .btn.outline:hover { background: var(--on-dark); color: var(--ink); }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 26px rgba(74, 155, 224, 0.34); }
+  .btn.ghost { background: var(--surface); color: var(--ink); border-color: var(--line); box-shadow: none; }
+  .btn.ghost:hover { border-color: var(--bubble); }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; box-shadow: 0 10px 30px rgba(38, 80, 120, 0.06); }
 
-  /* ---------- top ---------- */
-  .top { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; font-size: 14px; }
-  .top .brand { font-family: var(--display); font-weight: 900; font-size: 18px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
-  .top .brand i { width: 18px; height: 18px; border-radius: 50%; border: 3px solid var(--cyan); display: inline-block; position: relative; }
-  .top .brand i::after { content: ""; position: absolute; inset: 3px; border-radius: 50%; background: var(--yellow); }
-  .top nav a { text-decoration: none; color: var(--dim-dark); margin-left: 18px; }
-  .top nav a:hover { color: var(--yellow); }
+  /* top */
+  .top { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; font-size: 15px; }
+  .brand { font-family: var(--display); font-weight: 900; font-size: 19px; text-decoration: none; color: var(--ink); display: inline-flex; align-items: center; gap: 8px; }
+  .brand i { width: 22px; height: 22px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff 0 22%, var(--bubble) 23% 100%); border: 2px solid var(--blue); display: inline-block; }
+  .top nav a { text-decoration: none; color: var(--muted); margin-left: 18px; }
+  .top nav a:hover { color: var(--blue-d); }
 
-  /* ---------- hero ---------- */
-  .hero { padding: 10px 0 76px; display: grid; gap: 28px; align-items: center; }
-  .hero h1 { font-size: clamp(34px, 10.4vw, 76px); margin: 0; }
+  /* hero */
+  .hero { display: grid; gap: 30px; align-items: center; padding: 20px 0 50px; }
+  .hero h1 { font-size: clamp(36px, 9.6vw, 72px); margin: 14px 0 18px; }
   .hero h1 .line { display: block; white-space: nowrap; }
-  .hero .lede { font-size: clamp(17px, 2.1vw, 21px); color: var(--on-dark); margin: 22px 0 0; max-width: 34em; }
-  .hero .by { margin-top: 14px; color: var(--dim-dark); font-size: 14px; }
-  .hero .by b { color: var(--on-dark); }
-  .hero .ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
-  .visual { position: relative; margin: 0; border: 3px solid var(--on-dark); box-shadow: 10px 10px 0 var(--yellow); background: #7fb8cc; }
-  .visual img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 50%; }
-  .visual figcaption { position: absolute; left: 0; right: 0; bottom: -40px; text-align: center; color: var(--dim-dark); font-size: 13px; }
-  .sticker {
-    position: absolute; font-family: var(--display); font-weight: 900; font-size: clamp(11px, 1.35vw, 15px);
-    padding: 5px 10px; border: 2px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); white-space: nowrap;
-    animation: bob 3.6s ease-in-out infinite alternate;
-  }
-  .sticker.bad { background: var(--red); color: #fff; }
-  .sticker.good { background: var(--yellow); color: var(--ink); }
-  .s1 { left: 3%; top: 7%; transform: rotate(-6deg); }
-  .s2 { right: 2%; top: 20%; transform: rotate(5deg); animation-delay: -1.2s; }
-  .s3 { left: 1%; top: 60%; transform: rotate(4deg); animation-delay: -2.1s; }
-  .s4 { right: 3%; top: 73%; transform: rotate(-4deg); animation-delay: -0.6s; }
-  .s5 { left: 53%; top: 37%; transform: rotate(-2deg); animation-delay: -1.7s; }
-  .mlabel {
-    position: absolute; left: 9%; top: 34%; font-family: var(--display); font-weight: 900; font-size: clamp(12px, 1.4vw, 16px);
-    color: var(--ink); background: #fff; padding: 2px 8px; border: 2px solid var(--ink);
-  }
-  @keyframes bob { from { translate: 0 0; } to { translate: 0 -5px; } }
+  .lede { font-size: clamp(17px, 2vw, 20px); color: var(--ink); max-width: 32em; margin: 0; }
+  .by { margin-top: 14px; color: var(--muted); font-size: 14px; }
+  .by b { color: var(--ink); }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+  .hero-art { position: relative; max-width: 460px; width: 100%; margin: 0 auto; }
+  .hero-art::before { content: ""; position: absolute; inset: -6% -4% -2%; border-radius: 50%; background: radial-gradient(circle at 50% 45%, #ffffff 0 40%, var(--tint) 41% 100%); z-index: -1; }
+  .hero-art img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 56%; border-radius: 32px; background: #fff; border: 1px solid var(--line); box-shadow: 0 24px 50px rgba(38, 80, 120, 0.12); }
+  .float { position: absolute; border-radius: 50%; border: 2px solid var(--bubble); background: rgba(255, 255, 255, 0.6); }
+  .f1 { width: 46px; height: 46px; left: -4%; top: 12%; }
+  .f2 { width: 26px; height: 26px; right: 2%; top: 4%; }
+  .f3 { width: 34px; height: 34px; right: -3%; bottom: 18%; }
 
-  /* ---------- ticker ---------- */
-  .ticker { background: var(--yellow); color: var(--ink); overflow: hidden; border-top: 3px solid var(--ink); border-bottom: 3px solid var(--ink); transform: rotate(-1.2deg); margin: 0 -12px; }
-  .ticker .track { display: flex; width: max-content; animation: tick 38s linear infinite; }
-  .ticker span { font-family: var(--display); font-weight: 900; font-size: 22px; padding: 12px 0; white-space: nowrap; }
-  .ticker span::after { content: "✦"; margin: 0 22px; font-size: 16px; vertical-align: 2px; }
+  /* ticker */
+  .ticker { background: var(--tint); overflow: hidden; border-radius: 999px; margin: 0 20px; }
+  .ticker .track { display: flex; width: max-content; animation: tick 40s linear infinite; }
+  .ticker span { font-family: var(--display); font-weight: 700; font-size: 17px; color: var(--blue-d); padding: 12px 0; white-space: nowrap; }
+  .ticker span::after { content: "·"; margin: 0 20px; color: var(--bubble); }
   @keyframes tick { to { transform: translateX(-50%); } }
 
-  /* ---------- sections ---------- */
-  section { padding: 84px 0; }
-  .paper { background: var(--paper); color: var(--ink); }
-  .yellow { background: var(--yellow); color: var(--ink); }
-  .sec-no { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 14px; letter-spacing: .12em; opacity: .6; }
-  h2.display { font-size: clamp(34px, 6vw, 60px); margin: 6px 0 28px; }
-  .paper .dim { color: var(--dim-paper); }
-  .on-dark .dim { color: var(--dim-dark); }
-
-  /* what */
-  .big-quote { font-family: var(--display); font-weight: 900; font-size: clamp(26px, 4.4vw, 44px); line-height: 1.3; margin: 0 0 40px; max-width: 22em; }
-  .big-quote em { font-style: normal; background: linear-gradient(transparent 58%, var(--yellow) 58%); }
-  .terms { border-top: 3px solid var(--ink); }
-  .terms .row { display: grid; grid-template-columns: 1fr; gap: 4px; padding: 18px 0; border-bottom: 1.5px solid rgba(13, 15, 18, 0.25); }
-  .terms dt { font-family: var(--display); font-weight: 900; font-size: 34px; line-height: 1.2; }
-  .terms dd { margin: 0; font-size: 17px; color: var(--dim-paper); align-self: center; }
+  /* sections */
+  section { padding: 72px 0 8px; }
+  .num { display: block; font-family: var(--display); font-weight: 900; font-size: 20px; color: var(--blue); letter-spacing: .06em; }
+  .num::before { content: ""; display: inline-block; width: 28px; height: 4px; border-radius: 4px; background: var(--yellow); vertical-align: 5px; margin-right: 10px; }
+  h2.display { font-size: clamp(30px, 5vw, 46px); margin: 6px 0 24px; }
+  .big-quote { font-family: var(--display); font-weight: 700; font-size: clamp(21px, 3vw, 28px); line-height: 1.55; margin: 0 0 28px; max-width: 30em; }
+  .big-quote em { font-style: normal; color: var(--blue-d); }
+  .grid2 { display: grid; gap: 14px; }
+  .term { padding: 20px 22px; }
+  .term b { display: block; font-family: var(--display); font-weight: 900; font-size: 26px; color: var(--blue); line-height: 1.3; }
+  .term span { color: var(--muted); }
 
   /* layers */
-  .layers { display: grid; gap: 36px; align-items: center; }
-  .rings { width: 100%; max-width: 440px; margin: 0 auto; display: block; }
-  .layer-row { display: grid; grid-template-columns: 64px 1fr; gap: 14px; padding: 16px 0; border-bottom: 1px solid #2a3038; }
-  .layer-row:first-child { border-top: 1px solid #2a3038; }
-  .layer-row .n { font-family: var(--display); font-weight: 900; font-size: 40px; line-height: 1; color: var(--cyan); }
-  .layer-row h3 { font-family: var(--display); font-weight: 900; font-size: 24px; margin: 0 0 2px; }
-  .layer-row p { margin: 0; color: var(--dim-dark); }
-  .deeper { font-family: var(--display); font-weight: 900; font-size: clamp(22px, 3vw, 30px); margin-top: 26px; }
-  .deeper span { color: var(--red); }
+  .layers { display: grid; gap: 30px; align-items: center; }
+  .rings { width: 100%; max-width: 400px; margin: 0 auto; display: block; }
+  .layer-list { display: grid; gap: 12px; }
+  .layer { display: grid; grid-template-columns: 52px 1fr; gap: 14px; padding: 16px 18px; align-items: start; }
+  .layer .n { width: 44px; height: 44px; border-radius: 50%; background: var(--tint); color: var(--blue-d); font-family: var(--display); font-weight: 900; display: grid; place-items: center; font-size: 17px; }
+  .layer h3 { font-family: var(--display); font-weight: 900; font-size: 20px; margin: 0 0 2px; }
+  .layer p { margin: 0; color: var(--muted); }
+  .note { margin-top: 18px; font-family: var(--display); font-weight: 700; font-size: 18px; }
+  .note span { color: var(--coral); }
 
   /* laws */
-  .laws { display: grid; gap: 0; border-top: 4px solid var(--ink); }
-  .law { padding: 24px 0 28px; border-bottom: 4px solid var(--ink); display: grid; gap: 8px; }
-  .law .k { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 14px; letter-spacing: .1em; }
-  .law h3 { font-family: var(--display); font-weight: 900; font-size: clamp(48px, 9vw, 96px); line-height: 1; margin: 0; letter-spacing: -0.02em; }
-  .law p { margin: 0; font-size: 17px; max-width: 34em; }
+  .laws { display: grid; gap: 16px; }
+  .law { padding: 26px 24px; position: relative; overflow: hidden; }
+  .law .k { display: inline-block; font-family: var(--display); font-weight: 700; font-size: 14px; color: #8a6400; background: var(--tint-2); padding: 3px 12px; border-radius: 999px; }
+  .law h3 { font-family: var(--display); font-weight: 900; font-size: clamp(36px, 5vw, 48px); line-height: 1.15; margin: 12px 0 10px; }
+  .law p { margin: 0; color: var(--muted); }
+  .law::after { content: ""; position: absolute; width: 150px; height: 150px; right: -56px; bottom: -56px; border-radius: 50%; border: 12px solid var(--tint); z-index: 0; }
+  .law > * { position: relative; z-index: 1; }
 
   /* permeability */
-  .states { display: grid; gap: 18px; margin-top: 10px; }
-  .state { border: 3px solid var(--ink); background: #fff; padding: 20px; box-shadow: 6px 6px 0 var(--ink); }
-  .state svg { width: 120px; height: 120px; display: block; margin-bottom: 8px; }
-  .state h3 { font-family: var(--display); font-weight: 900; font-size: 28px; margin: 0; }
-  .state p { margin: 4px 0 0; color: var(--dim-paper); }
-  .state.good { background: var(--ink); color: var(--on-dark); box-shadow: 6px 6px 0 var(--yellow); }
-  .state.good p { color: var(--dim-dark); }
-  .state .tag { display: inline-block; font-family: var(--display); font-weight: 900; font-size: 13px; background: var(--yellow); color: var(--ink); padding: 1px 8px; margin-left: 8px; vertical-align: 6px; }
+  .states { display: grid; gap: 16px; }
+  .state { padding: 22px; text-align: center; }
+  .state svg { width: 120px; height: 120px; display: block; margin: 0 auto 6px; }
+  .state h3 { font-family: var(--display); font-weight: 900; font-size: 24px; margin: 0; }
+  .state p { margin: 6px 0 0; color: var(--muted); }
+  .state.good { border: 2px solid var(--blue); background: linear-gradient(180deg, #ffffff 0%, var(--tint) 100%); }
+  .tag { display: inline-block; font-size: 13px; font-weight: 900; background: var(--yellow); color: var(--ink); padding: 1px 10px; border-radius: 999px; margin-left: 8px; vertical-align: 5px; }
 
   /* practices */
-  .rx { display: grid; gap: 0; border-top: 3px solid var(--on-dark); }
-  .rx .item { display: grid; grid-template-columns: 1fr; gap: 6px; padding: 22px 0; border-bottom: 1px solid #2a3038; }
-  .rx .layer { font-family: var(--display); font-weight: 900; font-size: 15px; color: var(--cyan); letter-spacing: .06em; }
-  .rx .name { font-family: var(--display); font-weight: 900; font-size: 30px; line-height: 1.2; }
-  .rx .how { color: var(--dim-dark); font-size: 16px; }
+  .rx { display: grid; gap: 14px; }
+  .rx .item { padding: 20px 22px; }
+  .rx .lay { display: inline-block; font-family: var(--display); font-weight: 700; font-size: 13px; color: var(--blue-d); background: var(--tint); padding: 2px 10px; border-radius: 999px; }
+  .rx .name { font-family: var(--display); font-weight: 900; font-size: 22px; margin: 8px 0 2px; }
+  .rx .how { color: var(--muted); }
 
   /* myths */
-  .myths { display: grid; gap: 26px; }
-  .myth .wrong { font-family: var(--display); font-weight: 900; font-size: clamp(34px, 6vw, 56px); line-height: 1.1; text-decoration: line-through; text-decoration-color: var(--red); text-decoration-thickness: 6px; color: rgba(13, 15, 18, 0.45); }
-  .myth .right { font-size: 18px; margin-top: 6px; }
-  .myth .right b { font-family: var(--display); font-weight: 900; }
+  .myths { display: grid; gap: 16px; }
+  .myth { padding: 22px 24px; }
+  .myth .wrong { font-family: var(--display); font-weight: 900; font-size: 34px; line-height: 1.2; color: #a9b4bf; text-decoration: line-through; text-decoration-color: var(--coral); text-decoration-thickness: 4px; }
+  .myth p { margin: 8px 0 0; color: var(--muted); }
+  .myth p b { color: var(--ink); }
 
   /* faq */
-  .faq { border-top: 4px solid var(--ink); }
-  .qa { padding: 20px 0; border-bottom: 2px solid rgba(13, 15, 18, 0.35); }
-  .qa h3 { font-family: var(--display); font-weight: 900; font-size: 22px; margin: 0 0 6px; }
-  .qa p { margin: 0; font-size: 17px; max-width: 46em; }
-  .qa a { font-weight: 700; text-underline-offset: 3px; }
+  .faq { display: grid; gap: 12px; }
+  .qa { padding: 18px 22px; }
+  .qa h3 { font-family: var(--display); font-weight: 900; font-size: 19px; margin: 0 0 4px; }
+  .qa p { margin: 0; color: var(--muted); }
+  .qa a { font-weight: 700; }
 
-  /* cta */
-  .cta { text-align: center; padding: 100px 0 90px; }
-  .cta h2 { font-size: clamp(42px, 8vw, 84px); margin: 0 0 18px; }
-  .cta .dim { font-size: 18px; max-width: 30em; margin: 0 auto; }
-  .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 34px auto 40px; max-width: 900px; }
-  .chips a { border: 2px solid #343b44; padding: 6px 14px; font-size: 15px; color: var(--on-dark); }
-  .chips a { text-decoration: none; }
-  .chips a:hover { border-color: var(--yellow); }
-  .chips code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-weight: 700; color: var(--yellow); margin-right: 6px; }
-  .chips a:nth-child(5n+1) { border-color: var(--cyan); }
-  .chips a:nth-child(7n+3) { border-color: var(--yellow); }
-
-  .chars { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; max-width: 980px; margin: 34px auto 40px; text-align: left; }
-  .char { display: block; background: #fff; color: var(--ink); text-decoration: none; border: 3px solid var(--ink); box-shadow: 0 0 0 2px #343b44; transition: transform .12s ease, box-shadow .12s ease; }
-  .char:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--yellow); }
+  /* cta + gallery */
+  .cta { text-align: center; padding: 80px 0 70px; }
+  .cta h2.display { font-size: clamp(32px, 6vw, 54px); }
+  .cta .muted { font-size: 18px; max-width: 30em; margin: -8px auto 0; }
+  .chars { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; max-width: 980px; margin: 32px auto 36px; text-align: left; }
+  .char { display: block; background: var(--surface); color: var(--ink); text-decoration: none; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; box-shadow: 0 8px 22px rgba(38, 80, 120, 0.06); transition: transform .15s ease, box-shadow .15s ease; }
+  .char:hover { transform: translateY(-3px); box-shadow: 0 14px 28px rgba(38, 80, 120, 0.12); }
   .char img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 58%; }
-  .char span { display: block; padding: 8px 10px 10px; font-family: var(--display); font-weight: 900; font-size: 15px; border-top: 2px solid #eee; }
-  .char code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-weight: 700; color: #8a6d00; margin-right: 6px; }
-  @media (min-width: 720px) { .chars { grid-template-columns: repeat(4, 1fr); } }
-  footer { border-top: 1px solid #2a3038; padding: 26px 0 40px; color: var(--dim-dark); font-size: 14px; }
-  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; }
-  footer a { color: var(--on-dark); }
+  .char span { display: block; padding: 8px 12px 12px; font-family: var(--display); font-weight: 900; font-size: 15px; }
+  .char code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-weight: 700; font-size: 13px; color: var(--blue-d); margin-right: 6px; }
+  .more { margin-top: 18px; }
 
-  @media (min-width: 860px) {
-    .hero { grid-template-columns: 1.15fr 1fr; padding-top: 30px; min-height: calc(100vh - 140px); }
-    .hero h1 { font-size: clamp(44px, 5.4vw, 76px); }
-    .terms .row { grid-template-columns: 180px 1fr; }
+  footer { border-top: 1px solid var(--line); padding: 26px 0 40px; color: var(--muted); font-size: 14px; }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; }
+
+  @media (min-width: 720px) {
+    .chars { grid-template-columns: repeat(4, 1fr); }
+    .grid2 { grid-template-columns: 1fr 1fr; }
+    .rx { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 880px) {
+    .hero { grid-template-columns: 1.1fr 1fr; padding-top: 30px; min-height: calc(100vh - 150px); }
+    .hero h1 { font-size: clamp(48px, 5.4vw, 72px); }
     .layers { grid-template-columns: 1fr 1fr; }
-    .laws { grid-template-columns: repeat(3, 1fr); border-top: 0; border-left: 4px solid var(--ink); }
-    .law { border-bottom: 0; border-right: 4px solid var(--ink); border-top: 4px solid var(--ink); border-bottom: 4px solid var(--ink); padding: 26px 24px 30px; align-content: start; }
-    .law h3 { font-size: clamp(48px, 5.4vw, 72px); }
-    .states { grid-template-columns: repeat(3, 1fr); }
-    .rx .item { grid-template-columns: 120px 260px 1fr; align-items: baseline; gap: 20px; }
-    .myths { grid-template-columns: repeat(3, 1fr); }
+    .laws, .states, .myths { grid-template-columns: repeat(3, 1fr); }
   }
   @media (prefers-reduced-motion: reduce) {
     .ticker .track { animation: none; }
-    .sticker { animation: none; }
-    .btn, .btn:hover { transition: none; }
+    .btn, .char { transition: none; }
   }
+  .brand, .top .brand, .top nav { white-space: nowrap; }
+  @media (max-width: 480px) { .top nav a { margin-left: 10px; font-size: 14px; } .top .brand, .brand { font-size: 17px; } }
 </style>
 </head>
 <body>
 
-<div class="on-dark">
-  <div class="wrap">
-    <header class="top">
-      <a class="brand" href="./"><i></i>牛膜理论</a>
-      <nav><a href="test/">人格测试</a><a href="types/">16 型</a><a href="https://tonywu.top/2026/11/27/niumo-theory/">原文</a><a href="https://me.tonywu.top/">作者</a></nav>
-    </header>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="./"><i></i>牛膜理论</a>
+    <nav><a href="test/">人格测试</a><a href="types/">16 型</a><a href="https://tonywu.top/2026/11/27/niumo-theory/">原文</a><a href="https://me.tonywu.top/">作者</a></nav>
+  </header>
 
-    <div class="hero">
-      <div>
-        <h1 class="display"><span class="line">做人可以牛马，</span><span class="line">但不能没有<span class="hl">牛膜</span>。</span></h1>
-        <p class="lede">当牛马本身不是问题。真正难受的是当牛马的时候一点防护都没有，外面一点动静，直接就穿到心里去了。</p>
-        <p class="by">牛膜理论由 <b>吴天卓（tonywu）</b> 于 2026 年 11 月提出</p>
-        <div class="ctas">
-          <a class="btn" href="test/">测测你的牛膜有多厚 →</a>
-          <a class="btn outline" href="https://tonywu.top/2026/11/27/niumo-theory/">读完整原文</a>
-        </div>
+  <div class="hero">
+    <div>
+      <span class="pill">牛膜理论 · 吴天卓（tonywu）提出</span>
+      <h1 class="display"><span class="line">做人可以牛马，</span><span class="line">但不能没有<span class="hl">牛膜</span>。</span></h1>
+      <p class="lede">当牛马本身不是问题。真正难受的是当牛马的时候一点防护都没有，外面一点动静，直接就穿到心里去了。</p>
+      <p class="by">牛膜理论由 <b>吴天卓（tonywu）</b> 于 2026 年 11 月提出</p>
+      <div class="ctas">
+        <a class="btn" href="test/">测测你的牛膜有多厚 →</a>
+        <a class="btn ghost" href="https://tonywu.top/2026/11/27/niumo-theory/">读完整原文</a>
       </div>
-      <figure class="visual">
-        <img src="cover.webp" width="2000" height="1125" alt="透明保护膜里独自办公的人，象征牛膜理论中人与外界之间的缓冲层" fetchpriority="high">
-        <span class="sticker bad s1">@所有人 加个班</span>
-        <span class="sticker bad s2">同龄人年薪百万</span>
-        <span class="sticker bad s3">这个需求今天要</span>
-        <span class="sticker bad s4">AI 要取代你了</span>
-        <span class="sticker good s5">朋友的关心</span>
-        <span class="mlabel">牛膜 →</span>
-        <figcaption>红色的挡在膜外，黄色的放进来</figcaption>
-      </figure>
+    </div>
+    <div class="hero-art">
+      <span class="float f1"></span><span class="float f2"></span><span class="float f3"></span>
+      <img src="img/types/BFIH.webp" width="1086" height="1448" alt="端着茶杯、站在厚厚牛膜里微笑的卡通小牛，红色感叹号被挡在膜外，一颗黄色爱心从缺口飘进来" fetchpriority="high">
     </div>
   </div>
 </div>
@@ -269,132 +239,134 @@
   </div>
 </div>
 
-<section class="paper">
+<section>
   <div class="wrap">
-    <div class="sec-no">01 / 什么是牛膜</div>
+    <span class="num">01</span>
     <h2 class="display">什么是牛膜</h2>
     <p class="big-quote">牛膜就是<em>你和外界之间的那层缓冲。</em>消息、情绪、评价，先碰到这层膜，再碰到你。</p>
-    <dl class="terms">
-      <div class="row"><dt>牛</dt><dd>为了生计持续付出时间和精力的状态，也就是常说的牛马。大部分上班的人都是这样。</dd></div>
-      <div class="row"><dt>膜</dt><dd>人和外界之间的缓冲层。任务、情绪、评价、比较、技术变化，要先经过这层膜，才会作用到人身上。</dd></div>
-      <div class="row"><dt>穿透</dt><dd>外面的压力没经过任何缓冲，直接变成了自己的焦虑和自责。</dd></div>
-      <div class="row"><dt>牛膜</dt><dd>处在牛马状态的人，给自己建立的这层缓冲。</dd></div>
-    </dl>
+    <div class="grid2">
+      <div class="card term"><b>牛</b><span>为了生计持续付出时间和精力的状态，也就是常说的牛马。大部分上班的人都是这样。</span></div>
+      <div class="card term"><b>膜</b><span>人和外界之间的缓冲层。任务、情绪、评价、比较、技术变化，要先经过这层膜，才会作用到人身上。</span></div>
+      <div class="card term"><b>穿透</b><span>外面的压力没经过任何缓冲，直接变成了自己的焦虑和自责。</span></div>
+      <div class="card term"><b>牛膜</b><span>处在牛马状态的人，给自己建立的这层缓冲。</span></div>
+    </div>
   </div>
 </section>
 
-<section class="on-dark">
+<section>
   <div class="wrap">
-    <div class="sec-no">02 / 四层结构</div>
+    <span class="num">02</span>
     <h2 class="display">牛膜分<span class="hl">四层</span></h2>
     <div class="layers">
       <svg class="rings" viewBox="0 0 400 400" role="img" aria-label="牛膜四层结构：从外到内依次是时间膜、情绪膜、评价膜、身份膜，中心是我">
-        <circle cx="200" cy="200" r="190" fill="none" stroke="#6fe3ff" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round"/>
-        <circle cx="200" cy="200" r="150" fill="none" stroke="#6fe3ff" stroke-width="5" stroke-opacity="0.55"/>
-        <circle cx="200" cy="200" r="110" fill="none" stroke="#6fe3ff" stroke-width="8" stroke-opacity="0.75"/>
-        <circle cx="200" cy="200" r="70" fill="none" stroke="#6fe3ff" stroke-width="12"/>
-        <circle cx="200" cy="200" r="34" fill="#ffd60a"/>
-        <g font-family="'Noto Sans SC', -apple-system, 'PingFang SC', sans-serif" font-weight="900" text-anchor="middle" fill="#e9ecef">
-          <text x="200" y="30" font-size="15">时间膜</text>
-          <text x="200" y="70" font-size="16">情绪膜</text>
-          <text x="200" y="110" font-size="17">评价膜</text>
-          <text x="200" y="150" font-size="18">身份膜</text>
-          <text x="200" y="210" font-size="26" fill="#0d0f12">我</text>
+        <circle cx="200" cy="200" r="190" fill="#eaf4fd" stroke="#bfe0fa" stroke-width="3"/>
+        <circle cx="200" cy="200" r="150" fill="#dcedfb" stroke="#a6d3f6" stroke-width="4"/>
+        <circle cx="200" cy="200" r="110" fill="#cbe5fa" stroke="#7fbcee" stroke-width="5"/>
+        <circle cx="200" cy="200" r="70" fill="#b5daf8" stroke="#4a9be0" stroke-width="6"/>
+        <circle cx="200" cy="200" r="34" fill="#ffcf3f"/>
+        <g font-family="'Noto Sans SC', -apple-system, 'PingFang SC', sans-serif" font-weight="900" text-anchor="middle" fill="#26313d">
+          <text x="200" y="32" font-size="15">时间膜</text>
+          <text x="200" y="72" font-size="16">情绪膜</text>
+          <text x="200" y="112" font-size="17">评价膜</text>
+          <text x="200" y="152" font-size="18">身份膜</text>
+          <text x="200" y="210" font-size="26">我</text>
         </g>
       </svg>
       <div>
-        <div class="layer-row"><div class="n">01</div><div><h3>时间膜</h3><p>分开工作时间和自己的时间。这层薄的人，下班了也一直在回消息。</p></div></div>
-        <div class="layer-row"><div class="n">02</div><div><h3>情绪膜</h3><p>分开别人的情绪和自己的情绪。这层薄的人，别人一不高兴就先怀疑是不是自己的错。</p></div></div>
-        <div class="layer-row"><div class="n">03</div><div><h3>评价膜</h3><p>分开别人的评价和你对自己的看法。这层薄的人，被说一句能难受好几天，看到同龄人混得好就很焦虑。</p></div></div>
-        <div class="layer-row"><div class="n">04</div><div><h3>身份膜</h3><p>分开工作和你这个人。这层薄的人，会把职位和绩效当成自己的全部，失业时打击特别大。</p></div></div>
-        <p class="deeper">从外到内，<span>越靠里的膜破了，越难恢复。</span></p>
+        <div class="layer-list">
+          <div class="card layer"><div class="n">01</div><div><h3>时间膜</h3><p>分开工作时间和自己的时间。这层薄的人，下班了也一直在回消息。</p></div></div>
+          <div class="card layer"><div class="n">02</div><div><h3>情绪膜</h3><p>分开别人的情绪和自己的情绪。这层薄的人，别人一不高兴就先怀疑是不是自己的错。</p></div></div>
+          <div class="card layer"><div class="n">03</div><div><h3>评价膜</h3><p>分开别人的评价和你对自己的看法。这层薄的人，被说一句能难受好几天，看到同龄人混得好就很焦虑。</p></div></div>
+          <div class="card layer"><div class="n">04</div><div><h3>身份膜</h3><p>分开工作和你这个人。这层薄的人，会把职位和绩效当成自己的全部，失业时打击特别大。</p></div></div>
+        </div>
+        <p class="note">从外到内，<span>越靠里的膜破了，越难恢复。</span></p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="yellow">
+<section>
   <div class="wrap">
-    <div class="sec-no">03 / 三大定律</div>
+    <span class="num">03</span>
     <h2 class="display">三大定律</h2>
     <div class="laws">
-      <div class="law"><div class="k">第一定律</div><h3>无膜<br>必牛</h3><p>第一次无偿加班没吭声，下次基本就默认是你的了。没有边界的人，让过一次步，后面就很难再收回来。</p></div>
-      <div class="law"><div class="k">第二定律</div><h3>膜薄<br>则穿</h3><p>膜越薄，越小的事越能影响到你。一条消息、一句评价都能让你琢磨半天，这种消耗会一点点攒起来，最后变成长期内耗。</p></div>
-      <div class="law"><div class="k">第三定律</div><h3>牛膜<br>分离</h3><p>你可以当牛马，但你不等于牛马。项目黄了、绩效差了、一部分活被 AI 做了，这些都是工作上的事，跟你这个人行不行是两回事。</p></div>
+      <div class="card law"><span class="k">第一定律</span><h3>无膜必牛</h3><p>第一次无偿加班没吭声，下次基本就默认是你的了。没有边界的人，让过一次步，后面就很难再收回来。</p></div>
+      <div class="card law"><span class="k">第二定律</span><h3>膜薄则穿</h3><p>膜越薄，越小的事越能影响到你。一条消息、一句评价都能让你琢磨半天，这种消耗会一点点攒起来，最后变成长期内耗。</p></div>
+      <div class="card law"><span class="k">第三定律</span><h3>牛膜分离</h3><p>你可以当牛马，但你不等于牛马。项目黄了、绩效差了、一部分活被 AI 做了，这些都是工作上的事，跟你这个人行不行是两回事。</p></div>
     </div>
   </div>
 </section>
 
-<section class="paper">
+<section>
   <div class="wrap">
-    <div class="sec-no">04 / 选择透过性</div>
+    <span class="num">04</span>
     <h2 class="display">选择透过性</h2>
-    <p class="dim" style="font-size:18px;max-width:40em;margin:-8px 0 28px">牛膜参考的是细胞膜。细胞膜会让需要的东西进来，把有害的挡在外面。牛膜也一样：别人有用的意见、真正着急的事、朋友的关心，应该能进来；没道理的要求、别人发泄过来的情绪、跟别人瞎比，应该挡在外面。</p>
+    <p class="muted" style="font-size:18px;max-width:40em;margin:-8px 0 24px">牛膜参考的是细胞膜。细胞膜会让需要的东西进来，把有害的挡在外面。牛膜也一样：别人有用的意见、真正着急的事、朋友的关心，应该能进来；没道理的要求、别人发泄过来的情绪、跟别人瞎比，应该挡在外面。</p>
     <div class="states">
-      <div class="state">
-        <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="36" fill="none" stroke="#0d0f12" stroke-width="2" stroke-dasharray="3 6"/><circle cx="60" cy="60" r="9" fill="#ff5a4e"/><g stroke="#ff5a4e" stroke-width="4" stroke-linecap="round"><path d="M8 20 L46 50"/><path d="M112 22 L74 50"/><path d="M10 104 L46 72"/><path d="M110 100 L74 72"/></g></svg>
+      <div class="card state">
+        <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="36" fill="none" stroke="#bfe0fa" stroke-width="3" stroke-dasharray="4 7"/><circle cx="60" cy="60" r="10" fill="#ff7468"/><g stroke="#ff7468" stroke-width="4" stroke-linecap="round"><path d="M10 20 L46 50"/><path d="M110 22 L74 50"/><path d="M12 102 L46 72"/><path d="M108 100 L74 72"/></g></svg>
         <h3>薄膜</h3><p>什么都往里放，人容易内耗，也容易讨好别人。</p>
       </div>
-      <div class="state">
-        <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="36" fill="#d9d4c8" stroke="#0d0f12" stroke-width="12"/><circle cx="60" cy="60" r="9" fill="#8f99a3"/><g stroke="#0d0f12" stroke-width="4" stroke-linecap="round" fill="none"><path d="M6 24 L22 36 L10 44"/><path d="M114 24 L98 36 L110 44"/><path d="M6 98 L22 86 L10 78"/><path d="M114 98 L98 86 L110 78"/></g></svg>
+      <div class="card state">
+        <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="36" fill="#eef1f4" stroke="#a9b4bf" stroke-width="12"/><circle cx="60" cy="60" r="10" fill="#a9b4bf"/><g stroke="#a9b4bf" stroke-width="4" stroke-linecap="round" fill="none"><path d="M8 24 L22 36 L10 44"/><path d="M112 24 L98 36 L110 44"/><path d="M8 98 L22 86 L10 78"/><path d="M112 98 L98 86 L110 78"/></g></svg>
         <h3>死膜</h3><p>什么都挡在外面，听不进意见，对人也冷淡。</p>
       </div>
-      <div class="state good">
-        <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="36" fill="none" stroke="#6fe3ff" stroke-width="6"/><circle cx="60" cy="60" r="9" fill="#ffd60a"/><g stroke-linecap="round" stroke-width="4" fill="none"><path d="M8 20 L48 52" stroke="#ffd60a"/><path d="M112 100 L72 70" stroke="#ffd60a"/><path d="M112 20 L92 34 L104 46" stroke="#ff5a4e"/><path d="M8 100 L28 86 L16 74" stroke="#ff5a4e"/></g></svg>
+      <div class="card state good">
+        <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="36" fill="#eaf4fd" stroke="#4a9be0" stroke-width="6"/><circle cx="60" cy="60" r="10" fill="#ffcf3f"/><g stroke-linecap="round" stroke-width="4" fill="none"><path d="M10 20 L48 52" stroke="#ffcf3f"/><path d="M110 100 L72 70" stroke="#ffcf3f"/><path d="M110 20 L92 34 L104 46" stroke="#ff7468"/><path d="M10 100 L28 86 L16 74" stroke="#ff7468"/></g></svg>
         <h3>活膜<span class="tag">目标</span></h3><p>该进来的进来，该挡的挡住。牛膜理论要的是这种。</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="on-dark">
+<section>
   <div class="wrap">
-    <div class="sec-no">05 / 怎么长出牛膜</div>
+    <span class="num">05</span>
     <h2 class="display">怎么建立<span class="hl">牛膜</span></h2>
     <div class="rx">
-      <div class="item"><div class="layer">时间膜</div><div class="name">牛膜时间</div><div class="how">每天固定一段时间不看、不回工作消息，一小时也行。真有急事别人会打电话。</div></div>
-      <div class="item"><div class="layer">时间膜</div><div class="name">延迟回复</div><div class="how">不着急的消息过一会儿再回，也给自己留点时间想想这活要不要接。</div></div>
-      <div class="item"><div class="layer">情绪膜</div><div class="name">归因分离</div><div class="how">遇到冲突先想想这是谁的问题。是自己的就改，不是自己的就别往身上揽。</div></div>
-      <div class="item"><div class="layer">评价膜</div><div class="name">管好参照系</div><div class="how">多和以前的自己比。别人的评价听听就好，不用全盘照收。</div></div>
-      <div class="item"><div class="layer">身份膜</div><div class="name">把 AI 当工具</div><div class="how">能让 AI 做的就交给 AI，把它当工具用，别拿它和自己比。</div></div>
-      <div class="item"><div class="layer">身份膜</div><div class="name">第二身份</div><div class="how">工作之外，给自己找一个认可的身份，比如一个爱好、一个作品或者一个圈子。</div></div>
+      <div class="card item"><span class="lay">时间膜</span><div class="name">牛膜时间</div><div class="how">每天固定一段时间不看、不回工作消息，一小时也行。真有急事别人会打电话。</div></div>
+      <div class="card item"><span class="lay">时间膜</span><div class="name">延迟回复</div><div class="how">不着急的消息过一会儿再回，也给自己留点时间想想这活要不要接。</div></div>
+      <div class="card item"><span class="lay">情绪膜</span><div class="name">归因分离</div><div class="how">遇到冲突先想想这是谁的问题。是自己的就改，不是自己的就别往身上揽。</div></div>
+      <div class="card item"><span class="lay">评价膜</span><div class="name">管好参照系</div><div class="how">多和以前的自己比。别人的评价听听就好，不用全盘照收。</div></div>
+      <div class="card item"><span class="lay">身份膜</span><div class="name">把 AI 当工具</div><div class="how">能让 AI 做的就交给 AI，把它当工具用，别拿它和自己比。</div></div>
+      <div class="card item"><span class="lay">身份膜</span><div class="name">第二身份</div><div class="how">工作之外，给自己找一个认可的身份，比如一个爱好、一个作品或者一个圈子。</div></div>
     </div>
   </div>
 </section>
 
-<section class="paper">
+<section>
   <div class="wrap">
-    <div class="sec-no">06 / 常见误解</div>
+    <span class="num">06</span>
     <h2 class="display">这些都不是牛膜</h2>
     <div class="myths">
-      <div class="myth"><div class="wrong">躺平</div><p class="right"><b>该干的活一样要干。</b>牛膜管的是干完以后，别让工作一直占着你的脑子。</p></div>
-      <div class="myth"><div class="wrong">冷漠</div><p class="right"><b>什么都不让进来叫死膜。</b>朋友真需要帮忙的时候，该帮还是要帮。</p></div>
-      <div class="myth"><div class="wrong">逃避</div><p class="right"><b>问题还是要解决。</b>牛膜只是让一件事别影响到生活的方方面面。</p></div>
+      <div class="card myth"><div class="wrong">躺平</div><p><b>该干的活一样要干。</b>牛膜管的是干完以后，别让工作一直占着你的脑子。</p></div>
+      <div class="card myth"><div class="wrong">冷漠</div><p><b>什么都不让进来叫死膜。</b>朋友真需要帮忙的时候，该帮还是要帮。</p></div>
+      <div class="card myth"><div class="wrong">逃避</div><p><b>问题还是要解决。</b>牛膜只是让一件事别影响到生活的方方面面。</p></div>
     </div>
   </div>
 </section>
 
-<section class="yellow" id="faq">
+<section id="faq">
   <div class="wrap">
-    <div class="sec-no">07 / 常见问题</div>
+    <span class="num">07</span>
     <h2 class="display">关于牛膜理论的常见问题</h2>
     <div class="faq">
-      <div class="qa"><h3>牛膜理论是谁提出的？</h3><p>牛膜理论由吴天卓（tonywu）在 2026 年 11 月提出，最早发表在他的博客 <a href="https://tonywu.top/2026/11/27/niumo-theory/">tonywu.top</a> 上。</p></div>
-      <div class="qa"><h3>牛膜理论讲的是什么？</h3><p>核心观点是：牛马可以被生活反复摩擦，但不能没有自己的保护膜。牛膜指人和外界之间的缓冲层，任务、情绪、评价和比较要先经过这层膜，才会影响到人。</p></div>
-      <div class="qa"><h3>牛膜分几层？</h3><p>四层。从外到内依次是时间膜、情绪膜、评价膜和身份膜，越靠里的膜破了越难恢复。</p></div>
-      <div class="qa"><h3>牛膜理论的三大定律是什么？</h3><p>第一定律无膜必牛，第二定律膜薄则穿，第三定律牛膜分离。</p></div>
-      <div class="qa"><h3>牛膜是不是越厚越好？</h3><p>不是。牛膜理论用细胞膜的选择透过性来解释：有用的意见、真正着急的事、朋友的关心要能进来，没道理的要求和别人发泄过来的情绪要挡在外面。什么都挡住的叫死膜。</p></div>
-      <div class="qa"><h3>牛膜和躺平有什么区别？</h3><p>躺平是少干活。牛膜不减少工作量，只是让工作别一直占着你的脑子。</p></div>
-      <div class="qa"><h3>牛膜人格测试（NMTI）是什么？</h3><p>根据牛膜理论四层结构设计的测试，一共 20 道题，测出四层膜各自的厚度，对应 <a href="types/">16 种牛膜人格</a>，比如 BFIH 钢化牛膜、OSEW 薄膜牛马。<a href="test/">去测试</a></p></div>
+      <div class="card qa"><h3>牛膜理论是谁提出的？</h3><p>牛膜理论由吴天卓（tonywu）在 2026 年 11 月提出，最早发表在他的博客 <a href="https://tonywu.top/2026/11/27/niumo-theory/">tonywu.top</a> 上。</p></div>
+      <div class="card qa"><h3>牛膜理论讲的是什么？</h3><p>核心观点是：牛马可以被生活反复摩擦，但不能没有自己的保护膜。牛膜指人和外界之间的缓冲层，任务、情绪、评价和比较要先经过这层膜，才会影响到人。</p></div>
+      <div class="card qa"><h3>牛膜分几层？</h3><p>四层。从外到内依次是时间膜、情绪膜、评价膜和身份膜，越靠里的膜破了越难恢复。</p></div>
+      <div class="card qa"><h3>牛膜理论的三大定律是什么？</h3><p>第一定律无膜必牛，第二定律膜薄则穿，第三定律牛膜分离。</p></div>
+      <div class="card qa"><h3>牛膜是不是越厚越好？</h3><p>不是。牛膜理论用细胞膜的选择透过性来解释：有用的意见、真正着急的事、朋友的关心要能进来，没道理的要求和别人发泄过来的情绪要挡在外面。什么都挡住的叫死膜。</p></div>
+      <div class="card qa"><h3>牛膜和躺平有什么区别？</h3><p>躺平是少干活。牛膜不减少工作量，只是让工作别一直占着你的脑子。</p></div>
+      <div class="card qa"><h3>牛膜人格测试（NMTI）是什么？</h3><p>根据牛膜理论四层结构设计的测试，一共 20 道题，测出四层膜各自的厚度，对应 <a href="types/">16 种牛膜人格</a>，比如 BFIH 钢化牛膜、OSEW 薄膜牛马。<a href="test/">去测试</a></p></div>
     </div>
   </div>
 </section>
 
-<section class="on-dark cta">
+<section class="cta">
   <div class="wrap">
-    <div class="sec-no">NMTI</div>
+    <span class="pill">NMTI · 牛膜人格测试</span>
     <h2 class="display">你是哪种<span class="hl">牛膜人格</span>？</h2>
-    <p class="dim">20 道题，大概 3 分钟。测完能看到你四层膜各有多厚，属于 16 种牛膜人格里的哪一种。</p>
+    <p class="muted">20 道题，大概 3 分钟。测完能看到你四层膜各有多厚，属于 16 种牛膜人格里的哪一种。</p>
     <div class="chars">
       <a class="char" href="types/#BFIH"><img src="img/types/BFIH.webp" width="1086" height="1448" loading="lazy" alt="BFIH 钢化牛膜 牛膜人格形象"><span><code>BFIH</code>钢化牛膜</span></a><a class="char" href="types/#OFIH"><img src="img/types/OFIH.webp" width="1086" height="1448" loading="lazy" alt="OFIH 在线佛系牛 牛膜人格形象"><span><code>OFIH</code>在线佛系牛</span></a><a class="char" href="types/#BSIH"><img src="img/types/BSIH.webp" width="1086" height="1448" loading="lazy" alt="BSIH 情绪海绵牛 牛膜人格形象"><span><code>BSIH</code>情绪海绵牛</span></a><a class="char" href="types/#BFEH"><img src="img/types/BFEH.webp" width="1086" height="1448" loading="lazy" alt="BFEH 排名焦虑牛 牛膜人格形象"><span><code>BFEH</code>排名焦虑牛</span></a>
       <a class="char" href="types/#BFIW"><img src="img/types/BFIW.webp" width="1086" height="1448" loading="lazy" alt="BFIW 以司为家牛 牛膜人格形象"><span><code>BFIW</code>以司为家牛</span></a><a class="char" href="types/#OSIH"><img src="img/types/OSIH.webp" width="1086" height="1448" loading="lazy" alt="OSIH 全天客服牛 牛膜人格形象"><span><code>OSIH</code>全天客服牛</span></a><a class="char" href="types/#OFEH"><img src="img/types/OFEH.webp" width="1086" height="1448" loading="lazy" alt="OFEH 卷王预备牛 牛膜人格形象"><span><code>OFEH</code>卷王预备牛</span></a><a class="char" href="types/#OFIW"><img src="img/types/OFIW.webp" width="1086" height="1448" loading="lazy" alt="OFIW 主人翁牛 牛膜人格形象"><span><code>OFIW</code>主人翁牛</span></a>
@@ -402,16 +374,15 @@
       <a class="char" href="types/#OSIW"><img src="img/types/OSIW.webp" width="1086" height="1448" loading="lazy" alt="OSIW 自洽老黄牛 牛膜人格形象"><span><code>OSIW</code>自洽老黄牛</span></a><a class="char" href="types/#OFEW"><img src="img/types/OFEW.webp" width="1086" height="1448" loading="lazy" alt="OFEW 淡定卷王牛 牛膜人格形象"><span><code>OFEW</code>淡定卷王牛</span></a><a class="char" href="types/#BSEW"><img src="img/types/BSEW.webp" width="1086" height="1448" loading="lazy" alt="BSEW 准点内耗牛 牛膜人格形象"><span><code>BSEW</code>准点内耗牛</span></a><a class="char" href="types/#OSEW"><img src="img/types/OSEW.webp" width="1086" height="1448" loading="lazy" alt="OSEW 薄膜牛马 牛膜人格形象"><span><code>OSEW</code>薄膜牛马</span></a>
     </div>
     <a class="btn" href="test/">开始测试 →</a>
-    <p class="dim" style="margin-top:22px"><a href="types/">查看 16 种牛膜人格的详细说明</a></p>
+    <p class="more muted"><a href="types/">查看 16 种牛膜人格的详细说明</a></p>
   </div>
 </section>
 
-<footer class="on-dark">
+<footer>
   <div class="wrap">
     <span>牛膜理论由吴天卓（tonywu）提出，引用请注明出处</span>
     <span><a href="https://tonywu.top/2026/11/27/niumo-theory/">原文</a> · <a href="https://me.tonywu.top/">作者主页</a> · <a href="https://github.com/TonyWu2333/niumo-test">GitHub</a></span>
   </div>
 </footer>
-
 </body>
 </html>

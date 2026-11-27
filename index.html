@@ -17,7 +17,11 @@
 <meta property="og:image" content="https://tonywu2333.github.io/niumo-test/cover.webp">
 <meta property="og:site_name" content="牛膜理论">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ccircle cx=%2750%27 cy=%2750%27 r=%2744%27 fill=%27%23bfe3f1%27 stroke=%27%232386b8%27 stroke-width=%276%27/%3E%3C/svg%3E">
+<meta name="theme-color" content="#0d0f12">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2720%27 fill=%27%230d0f12%27/%3E%3Ccircle cx=%2750%27 cy=%2750%27 r=%2732%27 fill=%27none%27 stroke=%27%236fe3ff%27 stroke-width=%278%27/%3E%3Ccircle cx=%2750%27 cy=%2750%27 r=%2711%27 fill=%27%23ffd60a%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500;700;900&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
 {"@type":"WebSite","@id":"https://tonywu2333.github.io/niumo-test/#website","url":"https://tonywu2333.github.io/niumo-test/","name":"牛膜理论","inLanguage":"zh-CN","publisher":{"@id":"https://me.tonywu.top/#person"}},
@@ -28,214 +32,501 @@
 </script>
 <style>
   :root {
-    --bg-top: #e3f2f8;
-    --bg-bottom: #9fcfe2;
-    --ink: #12324a;
-    --muted: #4c6a80;
-    --accent: #2386b8;
-    --accent-ink: #ffffff;
-    --card: rgba(255, 255, 255, 0.72);
-    --card-edge: rgba(255, 255, 255, 0.9);
-    --thin: #e9a23b;
-    --dead: #8a9aa6;
+    --ink: #0d0f12;
+    --ink-2: #1a1e24;
+    --paper: #f4efe4;
+    --yellow: #ffd60a;
+    --cyan: #6fe3ff;
+    --red: #ff5a4e;
+    --on-dark: #e9ecef;
+    --dim-dark: #8f99a3;
+    --dim-paper: #5d6168;
+    --display: "Noto Sans SC", -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; }
   body {
-    min-height: 100vh;
-    background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%) fixed;
-    color: var(--ink);
+    background: var(--ink);
+    color: var(--on-dark);
     font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
     line-height: 1.75;
     -webkit-font-smoothing: antialiased;
   }
-  a { color: var(--accent); }
-  .wrap { max-width: 860px; margin: 0 auto; padding: 0 16px; }
-  nav.top { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; font-size: 14px; }
-  nav.top .brand { font-weight: 700; color: var(--ink); text-decoration: none; letter-spacing: .04em; }
-  nav.top .links a { color: var(--muted); text-decoration: none; margin-left: 16px; }
-  nav.top .links a:hover { color: var(--accent); }
-  .bubble {
-    background: var(--card);
-    border: 1px solid var(--card-edge);
-    border-radius: 28px;
-    box-shadow: 0 20px 50px rgba(18, 50, 74, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.8);
-    -webkit-backdrop-filter: blur(14px);
-    backdrop-filter: blur(14px);
-    padding: 28px 22px;
-    margin-bottom: 18px;
-  }
-  .eyebrow { color: var(--accent); font-weight: 600; font-size: 14px; letter-spacing: 0.08em; }
-  .muted { color: var(--muted); }
-  h1 { font-size: 34px; line-height: 1.3; margin: 6px 0 12px; letter-spacing: .02em; }
-  h2 { font-size: 23px; line-height: 1.4; margin: 0 0 14px; }
-  h3 { font-size: 17px; margin: 0 0 4px; }
-  p { margin: 0 0 12px; }
+  a { color: inherit; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+  .display { font-family: var(--display); font-weight: 900; letter-spacing: -0.01em; line-height: 1.12; }
+  .hl { color: var(--yellow); }
   .btn {
-    display: inline-flex; align-items: center; justify-content: center;
-    border-radius: 999px; padding: 12px 26px; font-size: 16px; text-decoration: none;
-    background: var(--accent); color: var(--accent-ink); box-shadow: 0 6px 16px rgba(35, 134, 184, 0.3);
-    transition: transform .15s ease;
+    display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
+    font-family: var(--display); font-weight: 900; font-size: 18px;
+    padding: 14px 26px; border: 3px solid var(--ink); background: var(--yellow); color: var(--ink);
+    box-shadow: 6px 6px 0 var(--ink); transition: transform .12s ease, box-shadow .12s ease;
   }
-  .btn:hover { transform: translateY(-1px); }
-  .btn.ghost { background: rgba(255, 255, 255, 0.85); color: var(--ink); box-shadow: none; border: 1px solid rgba(18, 50, 74, 0.12); }
-  .btn-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
-  /* hero */
-  .hero { display: grid; gap: 20px; align-items: center; }
-  .hero img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 22px; display: block; }
-  .slogan { font-size: 18px; color: var(--ink); }
-  .credit { font-size: 14px; color: var(--muted); margin-top: 14px; }
-  /* grids */
-  .grid2 { display: grid; gap: 12px; }
-  .card { background: rgba(255, 255, 255, 0.7); border-radius: 18px; padding: 14px 16px; }
-  .card p { margin: 0; color: var(--muted); }
-  .term { font-size: 18px; font-weight: 700; color: var(--accent); }
-  .core { margin-top: 16px; padding: 14px 16px; border-left: 4px solid var(--accent); background: rgba(255, 255, 255, 0.6); border-radius: 0 14px 14px 0; }
-  /* rings */
-  .layers { display: grid; gap: 18px; align-items: center; }
-  .rings { max-width: 300px; width: 100%; margin: 0 auto; display: block; }
-  .layer-list { display: grid; gap: 10px; }
-  .layer-list .card h3 span { font-size: 13px; font-weight: 400; color: var(--muted); margin-left: 6px; }
-  .law-num { display: inline-block; font-size: 13px; color: var(--accent-ink); background: var(--accent); border-radius: 999px; padding: 1px 10px; margin-bottom: 6px; }
-  /* states */
-  .states { display: grid; gap: 12px; }
-  .state { border-radius: 18px; padding: 14px 16px; background: rgba(255, 255, 255, 0.7); border-top: 5px solid var(--accent); }
-  .state.thin { border-top-color: var(--thin); }
-  .state.dead { border-top-color: var(--dead); }
-  .state p { margin: 0; color: var(--muted); }
-  ul.plain { margin: 0; padding-left: 1.2em; }
-  ul.plain li { margin-bottom: 6px; }
+  .btn:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 var(--ink); }
+  .btn:active { transform: translate(3px, 3px); box-shadow: 3px 3px 0 var(--ink); }
+  .on-dark .btn { border-color: var(--yellow); box-shadow: 6px 6px 0 rgba(255, 214, 10, 0.35); }
+  .btn.outline { background: transparent; color: var(--on-dark); border-color: var(--on-dark); box-shadow: none; }
+  .btn.outline:hover { background: var(--on-dark); color: var(--ink); }
+
+  /* ---------- top ---------- */
+  .top { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; font-size: 14px; }
+  .top .brand { font-family: var(--display); font-weight: 900; font-size: 18px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+  .top .brand i { width: 18px; height: 18px; border-radius: 50%; border: 3px solid var(--cyan); display: inline-block; position: relative; }
+  .top .brand i::after { content: ""; position: absolute; inset: 3px; border-radius: 50%; background: var(--yellow); }
+  .top nav a { text-decoration: none; color: var(--dim-dark); margin-left: 18px; }
+  .top nav a:hover { color: var(--yellow); }
+
+  /* ---------- hero ---------- */
+  .hero { padding: 10px 0 56px; display: grid; gap: 28px; align-items: center; }
+  .hero h1 { font-size: clamp(34px, 10.4vw, 76px); margin: 0; }
+  .hero h1 .line { display: block; white-space: nowrap; }
+  .hero .lede { font-size: clamp(17px, 2.1vw, 21px); color: var(--on-dark); margin: 22px 0 0; max-width: 34em; }
+  .hero .by { margin-top: 14px; color: var(--dim-dark); font-size: 14px; }
+  .hero .by b { color: var(--on-dark); }
+  .hero .ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
+  .stage {
+    position: relative; width: 100%; aspect-ratio: 1 / 1; max-width: 520px; margin: 0 auto;
+    border: 2px solid #2a3038; background: radial-gradient(circle at 50% 50%, #151a20 0%, #0d0f12 70%);
+  }
+  .stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .stage .hud {
+    position: absolute; left: 12px; right: 12px; top: 10px; display: flex; justify-content: space-between;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 12px; color: var(--dim-dark); pointer-events: none;
+  }
+  .stage .hud b { color: var(--cyan); font-weight: 700; }
+  .stage .hud b.bad { color: var(--red); }
+  .stage .toggle {
+    position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%);
+    font-family: var(--display); font-weight: 900; font-size: 15px; cursor: pointer;
+    background: var(--ink); color: var(--yellow); border: 2px solid var(--yellow); padding: 8px 16px; white-space: nowrap;
+  }
+  .stage .toggle:hover { background: var(--yellow); color: var(--ink); }
+  .stage-cap { text-align: center; color: var(--dim-dark); font-size: 13px; margin-top: 10px; }
+
+  /* ---------- ticker ---------- */
+  .ticker { background: var(--yellow); color: var(--ink); overflow: hidden; border-top: 3px solid var(--ink); border-bottom: 3px solid var(--ink); transform: rotate(-1.2deg); margin: 0 -12px; }
+  .ticker .track { display: flex; width: max-content; animation: tick 38s linear infinite; }
+  .ticker span { font-family: var(--display); font-weight: 900; font-size: 22px; padding: 12px 0; white-space: nowrap; }
+  .ticker span::after { content: "✦"; margin: 0 22px; font-size: 16px; vertical-align: 2px; }
+  @keyframes tick { to { transform: translateX(-50%); } }
+
+  /* ---------- sections ---------- */
+  section { padding: 84px 0; }
+  .paper { background: var(--paper); color: var(--ink); }
+  .yellow { background: var(--yellow); color: var(--ink); }
+  .sec-no { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 14px; letter-spacing: .12em; opacity: .6; }
+  h2.display { font-size: clamp(34px, 6vw, 60px); margin: 6px 0 28px; }
+  .paper .dim { color: var(--dim-paper); }
+  .on-dark .dim { color: var(--dim-dark); }
+
+  /* what */
+  .big-quote { font-family: var(--display); font-weight: 900; font-size: clamp(26px, 4.4vw, 44px); line-height: 1.3; margin: 0 0 40px; max-width: 22em; }
+  .big-quote em { font-style: normal; background: linear-gradient(transparent 58%, var(--yellow) 58%); }
+  .terms { border-top: 3px solid var(--ink); }
+  .terms .row { display: grid; grid-template-columns: 1fr; gap: 4px; padding: 18px 0; border-bottom: 1.5px solid rgba(13, 15, 18, 0.25); }
+  .terms dt { font-family: var(--display); font-weight: 900; font-size: 34px; line-height: 1.2; }
+  .terms dd { margin: 0; font-size: 17px; color: var(--dim-paper); align-self: center; }
+
+  /* layers */
+  .layers { display: grid; gap: 36px; align-items: center; }
+  .rings { width: 100%; max-width: 440px; margin: 0 auto; display: block; }
+  .layer-row { display: grid; grid-template-columns: 64px 1fr; gap: 14px; padding: 16px 0; border-bottom: 1px solid #2a3038; }
+  .layer-row:first-child { border-top: 1px solid #2a3038; }
+  .layer-row .n { font-family: var(--display); font-weight: 900; font-size: 40px; line-height: 1; color: var(--cyan); }
+  .layer-row h3 { font-family: var(--display); font-weight: 900; font-size: 24px; margin: 0 0 2px; }
+  .layer-row p { margin: 0; color: var(--dim-dark); }
+  .deeper { font-family: var(--display); font-weight: 900; font-size: clamp(22px, 3vw, 30px); margin-top: 26px; }
+  .deeper span { color: var(--red); }
+
+  /* laws */
+  .laws { display: grid; gap: 0; border-top: 4px solid var(--ink); }
+  .law { padding: 24px 0 28px; border-bottom: 4px solid var(--ink); display: grid; gap: 8px; }
+  .law .k { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 14px; letter-spacing: .1em; }
+  .law h3 { font-family: var(--display); font-weight: 900; font-size: clamp(48px, 9vw, 96px); line-height: 1; margin: 0; letter-spacing: -0.02em; }
+  .law p { margin: 0; font-size: 17px; max-width: 34em; }
+
+  /* permeability */
+  .states { display: grid; gap: 18px; margin-top: 10px; }
+  .state { border: 3px solid var(--ink); background: #fff; padding: 20px; box-shadow: 6px 6px 0 var(--ink); }
+  .state svg { width: 120px; height: 120px; display: block; margin-bottom: 8px; }
+  .state h3 { font-family: var(--display); font-weight: 900; font-size: 28px; margin: 0; }
+  .state p { margin: 4px 0 0; color: var(--dim-paper); }
+  .state.good { background: var(--ink); color: var(--on-dark); box-shadow: 6px 6px 0 var(--yellow); }
+  .state.good p { color: var(--dim-dark); }
+  .state .tag { display: inline-block; font-family: var(--display); font-weight: 900; font-size: 13px; background: var(--yellow); color: var(--ink); padding: 1px 8px; margin-left: 8px; vertical-align: 6px; }
+
+  /* practices */
+  .rx { display: grid; gap: 0; border-top: 3px solid var(--on-dark); }
+  .rx .item { display: grid; grid-template-columns: 1fr; gap: 6px; padding: 22px 0; border-bottom: 1px solid #2a3038; }
+  .rx .layer { font-family: var(--display); font-weight: 900; font-size: 15px; color: var(--cyan); letter-spacing: .06em; }
+  .rx .name { font-family: var(--display); font-weight: 900; font-size: 30px; line-height: 1.2; }
+  .rx .how { color: var(--dim-dark); font-size: 16px; }
+
+  /* myths */
+  .myths { display: grid; gap: 26px; }
+  .myth .wrong { font-family: var(--display); font-weight: 900; font-size: clamp(34px, 6vw, 56px); line-height: 1.1; text-decoration: line-through; text-decoration-color: var(--red); text-decoration-thickness: 6px; color: rgba(13, 15, 18, 0.45); }
+  .myth .right { font-size: 18px; margin-top: 6px; }
+  .myth .right b { font-family: var(--display); font-weight: 900; }
+
   /* cta */
-  .cta { text-align: center; padding: 34px 22px; }
-  .cta h2 { font-size: 26px; }
-  .types { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 14px 0 4px; }
-  .types span { background: rgba(255, 255, 255, 0.8); border-radius: 999px; padding: 3px 12px; font-size: 14px; color: var(--muted); }
-  .types code { font-family: ui-monospace, "SF Mono", Menlo, monospace; color: var(--accent); font-weight: 700; margin-right: 4px; }
-  footer { text-align: center; font-size: 13px; color: var(--muted); padding: 10px 16px 36px; }
-  @media (min-width: 720px) {
-    .bubble { padding: 36px 40px; }
-    .hero { grid-template-columns: 1.05fr 1fr; }
-    h1 { font-size: 40px; }
-    .grid2 { grid-template-columns: 1fr 1fr; }
-    .layers { grid-template-columns: 300px 1fr; }
+  .cta { text-align: center; padding: 100px 0 90px; }
+  .cta h2 { font-size: clamp(42px, 8vw, 84px); margin: 0 0 18px; }
+  .cta .dim { font-size: 18px; max-width: 30em; margin: 0 auto; }
+  .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 34px auto 40px; max-width: 900px; }
+  .chips span { border: 2px solid #343b44; padding: 6px 14px; font-size: 15px; color: var(--on-dark); }
+  .chips code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-weight: 700; color: var(--yellow); margin-right: 6px; }
+  .chips span:nth-child(5n+1) { border-color: var(--cyan); }
+  .chips span:nth-child(7n+3) { border-color: var(--yellow); }
+
+  footer { border-top: 1px solid #2a3038; padding: 26px 0 40px; color: var(--dim-dark); font-size: 14px; }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; }
+  footer a { color: var(--on-dark); }
+
+  @media (min-width: 860px) {
+    .hero { grid-template-columns: 1.15fr 1fr; padding-top: 30px; min-height: calc(100vh - 140px); }
+    .hero h1 { font-size: clamp(44px, 5.4vw, 76px); }
+    .terms .row { grid-template-columns: 180px 1fr; }
+    .layers { grid-template-columns: 1fr 1fr; }
+    .laws { grid-template-columns: repeat(3, 1fr); border-top: 0; border-left: 4px solid var(--ink); }
+    .law { border-bottom: 0; border-right: 4px solid var(--ink); border-top: 4px solid var(--ink); border-bottom: 4px solid var(--ink); padding: 26px 24px 30px; align-content: start; }
+    .law h3 { font-size: clamp(48px, 5.4vw, 72px); }
     .states { grid-template-columns: repeat(3, 1fr); }
+    .rx .item { grid-template-columns: 120px 260px 1fr; align-items: baseline; gap: 20px; }
+    .myths { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ticker .track { animation: none; }
+    .btn, .btn:hover { transition: none; }
   }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <nav class="top">
-    <a class="brand" href="./">牛膜理论</a>
-    <span class="links"><a href="test/">人格测试</a><a href="https://tonywu.top/2026/11/27/niumo-theory/">原文</a><a href="https://me.tonywu.top/">作者</a></span>
-  </nav>
 
-  <header class="bubble hero">
-    <div>
-      <div class="eyebrow">牛膜理论 · 吴天卓（tonywu）提出</div>
-      <h1>做人可以牛马，<br>但不能没有牛膜</h1>
-      <p class="slogan">牛马可以被生活反复摩擦，但不能没有自己的保护膜。</p>
-      <p class="muted">当牛马本身不是问题。真正难受的是当牛马的时候一点防护都没有，外面一点动静，直接就穿到心里去了。牛膜理论讲的是普通人在工作和生活里怎么给自己留一层保护。</p>
-      <div class="btn-row">
-        <a class="btn" href="test/">测测你的牛膜人格 →</a>
-        <a class="btn ghost" href="https://tonywu.top/2026/11/27/niumo-theory/">阅读完整原文</a>
+<div class="on-dark">
+  <div class="wrap">
+    <header class="top">
+      <a class="brand" href="./"><i></i>牛膜理论</a>
+      <nav><a href="test/">人格测试</a><a href="https://tonywu.top/2026/11/27/niumo-theory/">原文</a><a href="https://me.tonywu.top/">作者</a></nav>
+    </header>
+
+    <div class="hero">
+      <div>
+        <h1 class="display"><span class="line">做人可以牛马，</span><span class="line">但不能没有<span class="hl">牛膜</span>。</span></h1>
+        <p class="lede">当牛马本身不是问题。真正难受的是当牛马的时候一点防护都没有，外面一点动静，直接就穿到心里去了。</p>
+        <p class="by">牛膜理论由 <b>吴天卓（tonywu）</b> 于 2026 年 11 月提出</p>
+        <div class="ctas">
+          <a class="btn" href="test/">测测你的牛膜有多厚 →</a>
+          <a class="btn outline" href="https://tonywu.top/2026/11/27/niumo-theory/">读完整原文</a>
+        </div>
       </div>
-      <p class="credit">牛膜理论由吴天卓（tonywu）于 2026 年 11 月提出。欢迎引用和讨论，转载请注明出处。</p>
-    </div>
-    <img src="cover.webp" width="2000" height="1125" alt="透明保护膜里独自办公的人，象征牛膜理论中人与外界之间的缓冲层">
-  </header>
-
-  <section class="bubble">
-    <h2>一、基本概念</h2>
-    <div class="grid2">
-      <div class="card"><div class="term">牛</div><p>为了生计持续付出时间和精力的状态，也就是常说的牛马。绝大多数成年人都处在这个状态里。</p></div>
-      <div class="card"><div class="term">膜</div><p>人和外界之间的缓冲层。任务、情绪、评价、比较、技术变化，要先经过这层膜，才会作用到人身上。</p></div>
-      <div class="card"><div class="term">穿透</div><p>外部压力没有经过任何缓冲，直接变成了自己的焦虑、自责和消耗。</p></div>
-      <div class="card"><div class="term">牛膜</div><p>处在牛马状态的人，给自己建立的这层缓冲。</p></div>
-    </div>
-    <div class="core">一个人过得累不累，跟干了多少活有关系，但关系更大的是有多少压力直接穿透到了他身上。同样的工作量，有膜的人下班就能放下，没膜的人会一直带到床上。</div>
-  </section>
-
-  <section class="bubble">
-    <h2>二、牛膜的四层结构</h2>
-    <div class="layers">
-      <svg class="rings" viewBox="0 0 300 300" role="img" aria-label="牛膜四层结构：从外到内依次是时间膜、情绪膜、评价膜、身份膜，中心是我">
-        <circle cx="150" cy="150" r="146" fill="#2386b8" fill-opacity="0.10" stroke="#2386b8" stroke-opacity="0.35"/>
-        <circle cx="150" cy="150" r="114" fill="#2386b8" fill-opacity="0.12" stroke="#2386b8" stroke-opacity="0.4"/>
-        <circle cx="150" cy="150" r="82" fill="#2386b8" fill-opacity="0.16" stroke="#2386b8" stroke-opacity="0.45"/>
-        <circle cx="150" cy="150" r="50" fill="#2386b8" fill-opacity="0.22" stroke="#2386b8" stroke-opacity="0.5"/>
-        <circle cx="150" cy="150" r="22" fill="#ffffff" stroke="#2386b8"/>
-        <g font-family="-apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#12324a" text-anchor="middle">
-          <text x="150" y="22">时间膜</text>
-          <text x="150" y="54">情绪膜</text>
-          <text x="150" y="86">评价膜</text>
-          <text x="150" y="119">身份膜</text>
-          <text x="150" y="155" font-size="14" font-weight="700">我</text>
-        </g>
-      </svg>
-      <div class="layer-list">
-        <div class="card"><h3>时间膜<span>最外层</span></h3><p>工作时间和自己的时间之间的边界。破了的表现：随时在线，下班也在回消息。</p></div>
-        <div class="card"><h3>情绪膜</h3><p>别人的情绪和自己的情绪之间的边界。破了的表现：别人一不高兴就先反省自己，习惯性讨好。</p></div>
-        <div class="card"><h3>评价膜</h3><p>外界评价和自我价值之间的边界。破了的表现：被批评一次就全盘否定自己，看到同龄人混得好就觉得自己完了。</p></div>
-        <div class="card"><h3>身份膜<span>最内层</span></h3><p>工作身份和"我"之间的边界。破了的表现：把职位和绩效当成自己的全部，一旦失业就觉得人生崩了。</p></div>
+      <div>
+        <div class="stage" id="stage">
+          <canvas id="cv" aria-label="牛膜演示：外界压力飞向中间的我，牛膜挡住压力，让朋友的关心和有用的反馈通过"></canvas>
+          <div class="hud"><span>已挡住 <b id="blocked">0</b></span><span>内耗值 <b class="bad" id="drain">0</b></span></div>
+          <button class="toggle" id="toggle" type="button">关掉牛膜试试</button>
+        </div>
+        <div class="stage-cap">红色是压力，黄色是该放进来的东西</div>
       </div>
     </div>
-    <p class="muted" style="margin-top:14px">外层破了还能补，越往里破伤得越重。</p>
-  </section>
-
-  <section class="bubble">
-    <h2>三、三大定律</h2>
-    <div class="grid2" style="grid-template-columns:1fr">
-      <div class="card"><span class="law-num">第一定律</span><h3>无膜必牛</h3><p>边界会被不断试探。没有膜的人，每一次让步都会变成下一次的默认值。默认值只会往上走，不会自己降下来。</p></div>
-      <div class="card"><span class="law-num">第二定律</span><h3>膜薄则穿</h3><p>膜的厚度决定压力的穿透率。单次穿透不严重，但穿透会累积，累积多了人就会进入持续内耗。</p></div>
-      <div class="card"><span class="law-num">第三定律</span><h3>牛膜分离</h3><p>你可以当牛马，但你不等于牛马。工作是你在做的事，不是你这个人。项目黄了、绩效差了、活被 AI 干掉一部分，没必要上升到"我这个人是不是不行"。</p></div>
-    </div>
-  </section>
-
-  <section class="bubble">
-    <h2>四、选择透过性：好的牛膜不是越厚越好</h2>
-    <p class="muted">牛膜参考细胞膜。细胞膜有选择透过性，营养物质放进来，有害物质挡在外面。有用的批评、真正紧急的事、别人的善意、新的机会要放进来；无理的要求、别人甩过来的情绪、没有意义的比较要挡在外面。</p>
-    <div class="states">
-      <div class="state thin"><h3>薄膜</h3><p>什么都放进来。结果是内耗、讨好、被消耗。</p></div>
-      <div class="state dead"><h3>死膜</h3><p>什么都不放进来。结果是冷漠、听不进意见、停止成长。</p></div>
-      <div class="state"><h3>活膜</h3><p>有选择地放进来。这是牛膜理论追求的状态。</p></div>
-    </div>
-  </section>
-
-  <section class="bubble">
-    <h2>五、怎么建立牛膜</h2>
-    <div class="grid2">
-      <div class="card"><h3>时间膜</h3><p><b>牛膜时间：</b>每天留一段固定时间，不看也不回工作消息。<b>延迟回复：</b>非紧急的消息不秒回。</p></div>
-      <div class="card"><h3>情绪膜</h3><p><b>归因分离：</b>遇到冲突先问一句"这是谁的问题"。是自己的就改，不是自己的就不揽。</p></div>
-      <div class="card"><h3>评价膜</h3><p><b>管好参照系：</b>和过去的自己比。别人的评价是参考，不是判决。</p></div>
-      <div class="card"><h3>身份膜</h3><p><b>把 AI 当工具，</b>不拿它衡量自己；<b>第二身份：</b>在工作之外给自己一个认可的身份。</p></div>
-    </div>
-  </section>
-
-  <section class="bubble">
-    <h2>六、常见误解</h2>
-    <ul class="plain">
-      <li><b>牛膜不等于躺平。</b>牛膜不减少你干的活，减少的是无效的穿透。</li>
-      <li><b>牛膜不等于冷漠。</b>冷漠是死膜，牛膜要求的是选择透过。</li>
-      <li><b>牛膜不等于逃避。</b>问题照样要处理，牛膜只是保证一个问题不会把其他几层也一起击穿。</li>
-    </ul>
-  </section>
-
-  <section class="bubble cta" id="test">
-    <div class="eyebrow">NMTI · 牛膜人格测试</div>
-    <h2>你是哪种牛膜人格？</h2>
-    <p class="muted">20 道题，大约 3 分钟。按四层膜的厚薄，测出你属于 16 种牛膜人格里的哪一种，以及你最该先补哪一层。</p>
-    <div class="types">
-      <span><code>BFIH</code>钢化牛膜</span>
-      <span><code>BSEH</code>讨好型牛</span>
-      <span><code>BFEW</code>KPI 牛</span>
-      <span><code>OSIH</code>全天候客服牛</span>
-      <span><code>OSEW</code>薄膜牛马</span>
-      <span>……</span>
-    </div>
-    <div class="btn-row" style="justify-content:center"><a class="btn" href="test/">开始测试 →</a></div>
-  </section>
+  </div>
 </div>
 
-<footer>牛膜理论由吴天卓（tonywu）提出 · <a href="https://tonywu.top/2026/11/27/niumo-theory/">原文</a> · <a href="https://me.tonywu.top/">作者主页</a> · <a href="https://github.com/TonyWu2333/niumo-test">GitHub</a></footer>
+<div class="ticker" aria-hidden="true">
+  <div class="track">
+    <span>做人可以牛马</span><span>但不能没有牛膜</span><span>无膜必牛</span><span>膜薄则穿</span><span>牛膜分离</span><span>薄膜牛马</span><span>钢化牛膜</span><span>牛膜破裂</span><span>牛膜修复</span><span>今天你有膜吗</span>
+    <span>做人可以牛马</span><span>但不能没有牛膜</span><span>无膜必牛</span><span>膜薄则穿</span><span>牛膜分离</span><span>薄膜牛马</span><span>钢化牛膜</span><span>牛膜破裂</span><span>牛膜修复</span><span>今天你有膜吗</span>
+  </div>
+</div>
+
+<section class="paper">
+  <div class="wrap">
+    <div class="sec-no">01 / 什么是牛膜</div>
+    <h2 class="display">累，往往不是因为活多</h2>
+    <p class="big-quote">同样的工作量，有膜的人下班就能放下，<em>没膜的人会一直带到床上。</em></p>
+    <dl class="terms">
+      <div class="row"><dt>牛</dt><dd>为了生计持续付出时间和精力的状态，也就是常说的牛马。绝大多数成年人都处在这个状态里，当牛本身不是问题。</dd></div>
+      <div class="row"><dt>膜</dt><dd>人和外界之间的缓冲层。任务、情绪、评价、比较、技术变化，要先经过这层膜，才会作用到人身上。</dd></div>
+      <div class="row"><dt>穿透</dt><dd>外部压力没有经过任何缓冲，直接变成了自己的焦虑、自责和消耗。</dd></div>
+      <div class="row"><dt>牛膜</dt><dd>处在牛马状态的人，给自己建立的这层缓冲。</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="on-dark">
+  <div class="wrap">
+    <div class="sec-no">02 / 四层结构</div>
+    <h2 class="display">膜有四层，<span class="hl">越往里越要命</span></h2>
+    <div class="layers">
+      <svg class="rings" viewBox="0 0 400 400" role="img" aria-label="牛膜四层结构：从外到内依次是时间膜、情绪膜、评价膜、身份膜，中心是我">
+        <circle cx="200" cy="200" r="190" fill="none" stroke="#6fe3ff" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round"/>
+        <circle cx="200" cy="200" r="150" fill="none" stroke="#6fe3ff" stroke-width="5" stroke-opacity="0.55"/>
+        <circle cx="200" cy="200" r="110" fill="none" stroke="#6fe3ff" stroke-width="8" stroke-opacity="0.75"/>
+        <circle cx="200" cy="200" r="70" fill="none" stroke="#6fe3ff" stroke-width="12"/>
+        <circle cx="200" cy="200" r="34" fill="#ffd60a"/>
+        <g font-family="'Noto Sans SC', -apple-system, 'PingFang SC', sans-serif" font-weight="900" text-anchor="middle" fill="#e9ecef">
+          <text x="200" y="30" font-size="15">时间膜</text>
+          <text x="200" y="70" font-size="16">情绪膜</text>
+          <text x="200" y="110" font-size="17">评价膜</text>
+          <text x="200" y="150" font-size="18">身份膜</text>
+          <text x="200" y="210" font-size="26" fill="#0d0f12">我</text>
+        </g>
+      </svg>
+      <div>
+        <div class="layer-row"><div class="n">01</div><div><h3>时间膜</h3><p>工作时间和自己的时间之间的边界。破了：随时在线，下班也在回消息。</p></div></div>
+        <div class="layer-row"><div class="n">02</div><div><h3>情绪膜</h3><p>别人的情绪和自己的情绪之间的边界。破了：别人一不高兴就先反省自己，习惯性讨好。</p></div></div>
+        <div class="layer-row"><div class="n">03</div><div><h3>评价膜</h3><p>外界评价和自我价值之间的边界。破了：被批评一次就全盘否定自己，看到同龄人混得好就觉得自己完了。</p></div></div>
+        <div class="layer-row"><div class="n">04</div><div><h3>身份膜</h3><p>工作身份和"我"之间的边界。破了：把职位和绩效当成自己的全部，一旦失业就觉得人生崩了。</p></div></div>
+        <p class="deeper">外层破了还能补，<span>越往里破伤得越重。</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="yellow">
+  <div class="wrap">
+    <div class="sec-no">03 / 三大定律</div>
+    <h2 class="display">三大定律</h2>
+    <div class="laws">
+      <div class="law"><div class="k">第一定律</div><h3>无膜<br>必牛</h3><p>边界会被不断试探。没有膜的人，每一次让步都会变成下一次的默认值。默认值只会往上走，不会自己降下来。</p></div>
+      <div class="law"><div class="k">第二定律</div><h3>膜薄<br>则穿</h3><p>膜的厚度决定压力的穿透率。单次穿透不严重，但穿透会累积，累积多了人就会进入持续内耗：活没干多少，人先累垮了。</p></div>
+      <div class="law"><div class="k">第三定律</div><h3>牛膜<br>分离</h3><p>你可以当牛马，但你不等于牛马。工作是你在做的事，不是你这个人。项目黄了、绩效差了、活被 AI 干掉一部分，没必要上升到"我这个人是不是不行"。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="paper">
+  <div class="wrap">
+    <div class="sec-no">04 / 选择透过性</div>
+    <h2 class="display">膜不是越厚越好</h2>
+    <p class="dim" style="font-size:18px;max-width:40em;margin:-8px 0 28px">牛膜参考细胞膜：营养放进来，有害的挡在外面。有用的批评、真正紧急的事、别人的善意要放进来；无理的要求、甩过来的情绪、没有意义的比较要挡在外面。</p>
+    <div class="states">
+      <div class="state">
+        <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="36" fill="none" stroke="#0d0f12" stroke-width="2" stroke-dasharray="3 6"/><circle cx="60" cy="60" r="9" fill="#ff5a4e"/><g stroke="#ff5a4e" stroke-width="4" stroke-linecap="round"><path d="M8 20 L46 50"/><path d="M112 22 L74 50"/><path d="M10 104 L46 72"/><path d="M110 100 L74 72"/></g></svg>
+        <h3>薄膜</h3><p>什么都放进来。结果是内耗、讨好、被消耗。</p>
+      </div>
+      <div class="state">
+        <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="36" fill="#d9d4c8" stroke="#0d0f12" stroke-width="12"/><circle cx="60" cy="60" r="9" fill="#8f99a3"/><g stroke="#0d0f12" stroke-width="4" stroke-linecap="round" fill="none"><path d="M6 24 L22 36 L10 44"/><path d="M114 24 L98 36 L110 44"/><path d="M6 98 L22 86 L10 78"/><path d="M114 98 L98 86 L110 78"/></g></svg>
+        <h3>死膜</h3><p>什么都不放进来。结果是冷漠、听不进意见、停止成长。</p>
+      </div>
+      <div class="state good">
+        <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="36" fill="none" stroke="#6fe3ff" stroke-width="6"/><circle cx="60" cy="60" r="9" fill="#ffd60a"/><g stroke-linecap="round" stroke-width="4" fill="none"><path d="M8 20 L48 52" stroke="#ffd60a"/><path d="M112 100 L72 70" stroke="#ffd60a"/><path d="M112 20 L92 34 L104 46" stroke="#ff5a4e"/><path d="M8 100 L28 86 L16 74" stroke="#ff5a4e"/></g></svg>
+        <h3>活膜<span class="tag">目标</span></h3><p>有选择地放进来。这是牛膜理论追求的状态。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="on-dark">
+  <div class="wrap">
+    <div class="sec-no">05 / 怎么长出牛膜</div>
+    <h2 class="display">每层膜都有<span class="hl">对应的做法</span></h2>
+    <div class="rx">
+      <div class="item"><div class="layer">时间膜</div><div class="name">牛膜时间</div><div class="how">每天留一段固定时间，不看也不回工作消息。一小时也行，关键是每天固定。</div></div>
+      <div class="item"><div class="layer">时间膜</div><div class="name">延迟回复</div><div class="how">非紧急的消息不秒回。秒回会把对方的期望值越推越高。</div></div>
+      <div class="item"><div class="layer">情绪膜</div><div class="name">归因分离</div><div class="how">遇到冲突先问一句：这是谁的问题？是自己的就改，不是自己的就不揽。</div></div>
+      <div class="item"><div class="layer">评价膜</div><div class="name">管好参照系</div><div class="how">和过去的自己比。别人的一句评价是参考，不是判决。</div></div>
+      <div class="item"><div class="layer">身份膜</div><div class="name">把 AI 当工具</div><div class="how">AI 能干的活交给 AI。它能替你干活，但不能拿来衡量你值不值钱。</div></div>
+      <div class="item"><div class="layer">身份膜</div><div class="name">第二身份</div><div class="how">在工作之外给自己一个认可的身份，比如一个爱好、一个作品、一个圈子。</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="paper">
+  <div class="wrap">
+    <div class="sec-no">06 / 常见误解</div>
+    <h2 class="display">这些都不是牛膜</h2>
+    <div class="myths">
+      <div class="myth"><div class="wrong">躺平</div><p class="right"><b>牛膜不减少你干的活，</b>减少的是无效的穿透。该干的照样干，只是干完能放下。</p></div>
+      <div class="myth"><div class="wrong">冷漠</div><p class="right"><b>冷漠是死膜。</b>牛膜要求的是选择透过，别人真需要帮忙的时候，善意照样进出。</p></div>
+      <div class="myth"><div class="wrong">逃避</div><p class="right"><b>问题照样要处理。</b>牛膜只是保证一个问题不会把其他几层也一起击穿。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="on-dark cta">
+  <div class="wrap">
+    <div class="sec-no">NMTI</div>
+    <h2 class="display">你是哪种<span class="hl">牛膜人格</span>？</h2>
+    <p class="dim">20 道题，3 分钟。按四层膜的厚薄测出你属于 16 种牛膜人格里的哪一种，以及最该先补哪一层。</p>
+    <div class="chips">
+      <span><code>BFIH</code>钢化牛膜</span><span><code>OFIH</code>在线佛系牛</span><span><code>BSIH</code>情绪海绵牛</span><span><code>BFEH</code>排名焦虑牛</span>
+      <span><code>BFIW</code>以司为家牛</span><span><code>OSIH</code>全天候客服牛</span><span><code>OFEH</code>卷王预备牛</span><span><code>OFIW</code>主人翁牛</span>
+      <span><code>BSEH</code>讨好型牛</span><span><code>BSIW</code>老实人牛</span><span><code>BFEW</code>KPI 牛</span><span><code>OSEH</code>心里有退路的苦牛</span>
+      <span><code>OSIW</code>自洽的老黄牛</span><span><code>OFEW</code>情绪稳定的卷王</span><span><code>BSEW</code>准点下班的内耗牛</span><span><code>OSEW</code>薄膜牛马</span>
+    </div>
+    <a class="btn" href="test/">开始测试 →</a>
+  </div>
+</section>
+
+<footer class="on-dark">
+  <div class="wrap">
+    <span>牛膜理论由吴天卓（tonywu）提出，引用请注明出处</span>
+    <span><a href="https://tonywu.top/2026/11/27/niumo-theory/">原文</a> · <a href="https://me.tonywu.top/">作者主页</a> · <a href="https://github.com/TonyWu2333/niumo-test">GitHub</a></span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var stage = document.getElementById('stage');
+  var cv = document.getElementById('cv');
+  var ctx = cv.getContext('2d');
+  var blockedEl = document.getElementById('blocked');
+  var drainEl = document.getElementById('drain');
+  var toggleBtn = document.getElementById('toggle');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var BAD = ['在吗？', '@所有人 加个班', '这个需求今天要', '你看看人家', '同龄人年薪百万', 'AI 要取代你了', '绩效 C', '领导脸色不好', '周末开个会', '怎么还没回消息', '你不够努力', '再改一版'];
+  var GOOD = ['有用的反馈', '朋友的关心', '真正的急事', '新机会', '一句谢谢'];
+
+  var W = 0, H = 0, dpr = 1, R = 0, cx = 0, cy = 0;
+  var membrane = true, blocked = 0, drain = 0, shake = 0;
+  var chips = [], ripples = [], lastSpawn = 0, running = false, visible = true, lastT = 0;
+
+  function resize() {
+    var r = stage.getBoundingClientRect();
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = r.width; H = r.height;
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    cx = W / 2; cy = H / 2 + 6; R = Math.min(W, H) * 0.27;
+    if (reduce) drawStatic();
+  }
+
+  function font(sz, w) { return (w || 700) + ' ' + sz + 'px "Noto Sans SC", -apple-system, "PingFang SC", sans-serif'; }
+
+  function spawn() {
+    var good = Math.random() < 0.24;
+    var list = good ? GOOD : BAD;
+    var text = list[Math.floor(Math.random() * list.length)];
+    var a = Math.random() * Math.PI * 2;
+    var dist = Math.max(W, H) * 0.62;
+    var x = cx + Math.cos(a) * dist, y = cy + Math.sin(a) * dist;
+    var aim = a + Math.PI + (Math.random() - 0.5) * 0.25;
+    var sp = (good ? 0.07 : 0.085) + Math.random() * 0.05; // px per ms
+    ctx.font = font(13);
+    var tw = ctx.measureText(text).width;
+    chips.push({ text: text, good: good, x: x, y: y, vx: Math.cos(aim) * sp, vy: Math.sin(aim) * sp, w: tw + 18, h: 26, state: 'in', life: 1 });
+  }
+
+  function chipRadius(c) { return Math.max(c.w, c.h) / 2 * 0.62; }
+
+  function step(dt) {
+    for (var i = chips.length - 1; i >= 0; i--) {
+      var c = chips[i];
+      c.x += c.vx * dt; c.y += c.vy * dt;
+      var dx = c.x - cx, dy = c.y - cy, d = Math.sqrt(dx * dx + dy * dy);
+      var inward = (dx * c.vx + dy * c.vy) < 0;
+      if (c.state === 'in' && membrane && inward && d <= R + chipRadius(c)) {
+        var ang = Math.atan2(dy, dx);
+        if (c.good) {
+          c.state = 'pass';
+          ripples.push({ a: ang, t: 0, good: true });
+        } else {
+          var nx = dx / d, ny = dy / d, dot = c.vx * nx + c.vy * ny;
+          c.vx = (c.vx - 2 * dot * nx) * 0.75; c.vy = (c.vy - 2 * dot * ny) * 0.75;
+          c.state = 'bounced';
+          ripples.push({ a: ang, t: 0, good: false });
+          blocked++; blockedEl.textContent = blocked;
+        }
+      }
+      if ((c.state === 'in' || c.state === 'pass') && d < 26) {
+        if (!c.good) { drain++; drainEl.textContent = drain; shake = 1; }
+        c.state = 'done';
+      }
+      if (c.state === 'bounced' || c.state === 'done') c.life -= dt / (c.state === 'done' ? 260 : 1600);
+      if (c.life <= 0 || d > Math.max(W, H)) chips.splice(i, 1);
+    }
+    for (var j = ripples.length - 1; j >= 0; j--) { ripples[j].t += dt / 600; if (ripples[j].t >= 1) ripples.splice(j, 1); }
+    shake = Math.max(0, shake - dt / 350);
+  }
+
+  function roundRect(x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    // membrane
+    if (membrane) {
+      ctx.save();
+      ctx.shadowColor = 'rgba(111,227,255,0.55)'; ctx.shadowBlur = 18;
+      ctx.strokeStyle = '#6fe3ff'; ctx.lineWidth = 4;
+      ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.stroke();
+      ctx.restore();
+      ctx.fillStyle = 'rgba(111,227,255,0.06)';
+      ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fill();
+      ripples.forEach(function (rp) {
+        var k = 1 - rp.t;
+        ctx.strokeStyle = rp.good ? 'rgba(255,214,10,' + k + ')' : 'rgba(255,255,255,' + k + ')';
+        ctx.lineWidth = 3 + 6 * k;
+        ctx.beginPath(); ctx.arc(cx, cy, R + rp.t * 6, rp.a - 0.35, rp.a + 0.35); ctx.stroke();
+      });
+    } else {
+      ctx.setLineDash([3, 10]); ctx.strokeStyle = 'rgba(143,153,163,0.45)'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]);
+    }
+    // me
+    var sx = shake ? (Math.random() - 0.5) * 8 * shake : 0, sy = shake ? (Math.random() - 0.5) * 8 * shake : 0;
+    ctx.fillStyle = shake > 0.05 ? '#ff5a4e' : '#ffd60a';
+    ctx.beginPath(); ctx.arc(cx + sx, cy + sy, 24, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#0d0f12'; ctx.font = font(20, 900); ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText('我', cx + sx, cy + sy + 1);
+    // chips
+    ctx.font = font(13);
+    chips.forEach(function (c) {
+      ctx.globalAlpha = Math.max(0, Math.min(1, c.life));
+      var x = c.x - c.w / 2, y = c.y - c.h / 2;
+      roundRect(x, y, c.w, c.h, 13);
+      if (c.good) { ctx.fillStyle = '#ffd60a'; ctx.fill(); ctx.fillStyle = '#0d0f12'; }
+      else { ctx.fillStyle = '#1d1416'; ctx.fill(); ctx.strokeStyle = '#ff5a4e'; ctx.lineWidth = 1.5; ctx.stroke(); ctx.fillStyle = '#ffb3ad'; }
+      ctx.fillText(c.text, c.x, c.y + 1);
+    });
+    ctx.globalAlpha = 1;
+  }
+
+  function loop(t) {
+    if (!running) return;
+    var dt = lastT ? Math.min(t - lastT, 50) : 16;
+    lastT = t;
+    if (t - lastSpawn > (membrane ? 620 : 520)) { spawn(); lastSpawn = t; }
+    step(dt); draw();
+    requestAnimationFrame(loop);
+  }
+
+  function start() { if (running || reduce) return; running = true; lastT = 0; requestAnimationFrame(loop); }
+  function stop() { running = false; }
+
+  function drawStatic() {
+    // 减少动态效果时：画一帧示意图
+    chips = [];
+    var demo = [['@所有人 加个班', 0, -1, false], ['朋友的关心', 0, 0, true], ['同龄人年薪百万', 0, 1, false], ['AI 要取代你了', 0, 2, false]];
+    ctx.font = font(13);
+    demo.forEach(function (d, i) {
+      var a = -Math.PI / 2 + i * Math.PI / 2;
+      var dist = d[3] ? R * 0.55 : R + 46;
+      var tw = ctx.measureText(d[0]).width;
+      chips.push({ text: d[0], good: d[3], x: cx + Math.cos(a) * dist, y: cy + Math.sin(a) * dist, w: tw + 18, h: 26, life: 1 });
+    });
+    ripples = []; shake = membrane ? 0 : 1;
+    draw();
+  }
+
+  toggleBtn.addEventListener('click', function () {
+    membrane = !membrane;
+    toggleBtn.textContent = membrane ? '关掉牛膜试试' : '把牛膜装回去';
+    if (reduce) drawStatic();
+  });
+
+  window.addEventListener('resize', resize);
+  resize();
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) { visible = es[0].isIntersecting; visible ? start() : stop(); }).observe(stage);
+  } else { start(); }
+  document.addEventListener('visibilitychange', function () { document.hidden ? stop() : (visible && start()); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (reduce) drawStatic(); });
+})();
+</script>
 </body>
 </html>
